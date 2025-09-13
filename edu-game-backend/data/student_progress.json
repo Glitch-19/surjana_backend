@@ -1,9 +1,9 @@
 {
   "default": {
-    "xp": 525,
-    "tokens": 60,
+    "xp": 715,
+    "tokens": 82,
     "streak": 0,
-    "level": 6,
+    "level": 8,
     "lessons_completed": {},
     "subjects_progress": {
       "science": 0,
@@ -24,10 +24,10 @@
       "science": 0,
       "maths": 0
     },
-    "daily_progress": 5,
+    "daily_progress": 8,
     "achievements": [],
-    "total_questions_answered": 50,
-    "correct_answers": 350,
-    "last_activity": "2025-09-14T01:31:04.792669"
+    "total_questions_answered": 80,
+    "correct_answers": 487,
+    "last_activity": "2025-09-14T03:40:05.087974"
   }
 }

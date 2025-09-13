@@ -24,6 +24,8 @@ try:
         get_user_subject_class_questions,
         get_user_mixed_questions,
         reset_user_rotations,
+        # Added for auto-reset when lesson exhausted
+        reset_question_rotations,
         # New imports
         fetch_lesson_questions, fetch_subject_class_questions, fetch_mixed_questions,
         fetch_user_lesson_questions, fetch_user_subject_class_questions, fetch_user_mixed_questions,
@@ -71,11 +73,21 @@ def get_lesson_questions():
         if not lesson_id:
             return jsonify({'success': False, 'error': 'Lesson ID required'}), 400
         
-        # Get questions from database
+        # Get questions from database (rotation-based, may exhaust)
         questions = get_questions_by_lesson(lesson_id, count)
-        
+
+        # If exhausted (empty) but lesson exists, auto-reset rotation once
+        if not questions and lesson_id in NCERT_QUESTION_DATABASE:
+            try:
+                reset_question_rotations(scope='lesson', lesson_id=lesson_id)
+                questions = get_questions_by_lesson(lesson_id, count)
+            except Exception:
+                pass
+
+        used_fallback = False
+        # Final fallback generation if still empty (e.g., invalid lesson id or import failure)
         if not questions:
-            # Generate fallback questions
+            used_fallback = True
             questions = generate_fallback_questions(lesson_id, count)
         
         # Remove correct answer from response (send separately for security)
@@ -95,7 +107,9 @@ def get_lesson_questions():
             'success': True,
             'questions': safe_questions,
             'lesson_id': lesson_id,
-            'count': len(safe_questions)
+            'count': len(safe_questions),
+            'fallback': used_fallback,
+            'has_ncert_source': bool(NCERT_QUESTION_DATABASE.get(lesson_id))
         })
         
     except Exception as e:
@@ -177,14 +191,21 @@ def check_answer():
         student_id = data.get('student_id', 'default')
         if question_id is None or selected_option is None:
             return jsonify({'success': False, 'error': 'Missing required fields'}), 400
+        # Because question IDs are reused per lesson (id starts at 1 for each lesson),
+        # we must scope lookup to the provided lesson_id first to avoid mismatching concepts.
         correct_answer = None
         explanation = ""
         question_data = None
-        for lesson, questions in NCERT_QUESTION_DATABASE.items():
+        search_order = []
+        if lesson_id and lesson_id in NCERT_QUESTION_DATABASE:
+            search_order.append((lesson_id, NCERT_QUESTION_DATABASE.get(lesson_id, [])))
+        # Fallback global search if not found in specified lesson (robustness for older clients)
+        search_order.extend([(lid, qs) for lid, qs in NCERT_QUESTION_DATABASE.items() if lid != lesson_id])
+        for lesson, questions in search_order:
             for q in questions:
-                if q['id'] == question_id:
-                    correct_answer = q['correct']
-                    explanation = q['explanation']
+                if q.get('id') == question_id:
+                    correct_answer = q.get('correct')
+                    explanation = q.get('explanation')
                     question_data = q
                     break
             if correct_answer is not None:
@@ -214,6 +235,17 @@ def check_answer():
             'tokens_earned': tokens_earned,
             'difficulty': difficulty
         }
+        # Provide optional rich tutoring layer
+        if data.get('rich_explanation') or str(request.args.get('rich_explanation','')).lower() == 'true':
+            try:
+                from services.ai_service import AIService
+                ai_service = AIService()
+                rich = ai_service.get_rich_hint(question_data, user_attempt=data.get('user_attempt'), selected_option=selected_option)
+                response['rich_tutoring'] = rich
+                if not is_correct and selected_option is not None:
+                    response['wrong_analysis'] = ai_service.get_wrong_answer_analysis(question_data, selected_option)
+            except Exception:
+                pass
         return jsonify(response)
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
@@ -419,56 +451,58 @@ def get_daily_challenge():
 
 @duolingo_api.route('/hint/ai', methods=['POST'])
 def get_ai_hint():
-    """Get AI-powered hint for a question"""
+    """Get AI-powered hint for a question. Supports simple or rich modes.
+    Payload fields: question (str), options (list), concept (str), question_id (int optional), mode ('simple'|'rich'), user_attempt, selected_option.
+    """
     try:
-        data = request.json
+        data = request.json or {}
         question_text = data.get('question')
         options = data.get('options', [])
         concept = data.get('concept', '')
-        
-        # Try to use AI service for hints
-        try:
-            from services.ai_service import get_step_by_step_guidance
-            
-            hint = get_step_by_step_guidance(
-                question_text, 
-                f"This question is about {concept}",
-                concept
-            )
-            
-            return jsonify({
-                'success': True,
-                'hint': hint['steps'][0] if hint['steps'] else f"Think about the concept of {concept}.",
-                'source': 'ai'
-            })
-            
-        except Exception as ai_error:
-            # Fallback to concept-based hints
-            fallback_hints = {
-                'light': "Remember that luminous objects produce their own light, while non-luminous objects reflect light.",
-                'shadow': "Shadows are formed when opaque objects block light rays.",
-                'reflection': "Light bounces off surfaces following the law of reflection.",
-                'integers': "Remember the rules for adding positive and negative numbers.",
-                'fractions': "To add fractions, find a common denominator first.",
-                'equations': "Isolate the variable by performing the same operation on both sides.",
-                'gravity': "Gravity is a force that pulls objects toward the center of Earth.",
-                'motion': "Consider the forces acting on the object and Newton's laws."
-            }
-            
-            hint = "Consider the key concepts related to this topic."
-            for key, hint_text in fallback_hints.items():
-                if key.lower() in concept.lower() or key.lower() in question_text.lower():
-                    hint = hint_text
+        question_id = data.get('question_id')
+        mode = (data.get('mode') or request.args.get('mode') or 'simple').lower()
+        user_attempt = data.get('user_attempt')
+        selected_option = data.get('selected_option')
+
+        from services.ai_service import AIService
+        ai_service = AIService()
+
+        # Retrieve full question record if question_id provided
+        record = None
+        if question_id:
+            for lesson, qlist in NCERT_QUESTION_DATABASE.items():
+                for q in qlist:
+                    if q['id'] == question_id:
+                        record = q
+                        break
+                if record:
                     break
-            
-            return jsonify({
-                'success': True,
-                'hint': hint,
-                'source': 'fallback'
-            })
-    
+        if not record:
+            record = {
+                'question': question_text,
+                'text': question_text,
+                'options': options,
+                'concept': concept or 'General Concept',
+                'explanation': '',
+                'difficulty': 'easy',
+                'correct': None
+            }
+
+        if mode == 'rich':
+            rich = ai_service.get_rich_hint(record, user_attempt=user_attempt, selected_option=selected_option)
+            return jsonify({'success': True, 'mode': 'rich', **rich})
+        else:
+            basic = ai_service.get_hint({
+                'question': record.get('question'),
+                'class': '6-10',
+                'subject': 'General',
+                'chapter': concept or 'Concept',
+                'answer': 'Not disclosed'
+            }, user_attempt=user_attempt)
+            return jsonify({'success': True, 'mode': 'simple', 'hint': basic.get('content'), 'source': 'ai' if basic.get('success') else 'fallback'})
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
+        # Fallback generic
+        return jsonify({'success': False, 'error': str(e), 'hint': f'Think about the core principle of {concept}.'}), 500
 
 # ------------------ Per-User Unique Question Endpoints ---------------------
 @duolingo_api.route('/questions/user/lesson', methods=['POST'])
@@ -758,3 +792,5 @@ def adaptive_reset():
 
 # Hook answer tracking inside existing check_answer response (wrap existing)
 # (For brevity we patch after definition if available)
+
+# Macro-Synthesis feature removed per request (routes deleted intentionally)

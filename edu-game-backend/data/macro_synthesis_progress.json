@@ -1,0 +1,110 @@
+{
+  "student123": {
+    "light-class6": {
+      "recent_chunks": [
+        {
+          "id": "q1",
+          "concept": "luminous objects",
+          "at": "2025-09-13T21:48:20.249496"
+        },
+        {
+          "id": "q2",
+          "concept": "shadows",
+          "at": "2025-09-13T21:48:26.005421"
+        },
+        {
+          "id": "q3",
+          "concept": "reflection",
+          "at": "2025-09-13T21:48:29.720501"
+        },
+        {
+          "id": "q5",
+          "concept": "Properties of shadows",
+          "at": "2025-09-13T22:07:39.963611"
+        },
+        {
+          "id": "q7",
+          "concept": "Pinhole camera principle",
+          "at": "2025-09-13T22:09:13.204063"
+        },
+        {
+          "id": "q6",
+          "concept": "Shadow size variation",
+          "at": "2025-09-13T22:09:27.591121"
+        },
+        {
+          "id": "q4",
+          "concept": "Transparent, translucent, and opaque objects",
+          "at": "2025-09-13T22:09:44.867365"
+        }
+      ],
+      "last_macro_prompt_at": "2025-09-13T22:19:36.154421",
+      "macro_history": [
+        {
+          "generated_at": "2025-09-13T21:49:56.022491",
+          "chunk_ids": [
+            "q2",
+            "q3"
+          ],
+          "prompt": "Macro-Synthesis: You've just worked through 2 micro-points about light-class6. Now synthesize: Describe how these pieces connect to explain the bigger idea of light-class6. Include cause-effect links, sequences, and why this matters in real life. They covered micro-concepts: reflection, shadows.",
+          "student_response": null
+        },
+        {
+          "generated_at": "2025-09-13T22:19:36.154421",
+          "chunk_ids": [
+            "q6",
+            "q4"
+          ],
+          "prompt": "Macro-Synthesis: You've just worked through 2 micro-points about light-class6. Now synthesize: Describe how these pieces connect to explain the bigger idea of light-class6. Include cause-effect links, sequences, and why this matters in real life. They covered micro-concepts: Shadow size variation, Transparent, translucent, and opaque objects.",
+          "student_response": null
+        }
+      ]
+    },
+    "electricity-class6": {
+      "recent_chunks": [
+        {
+          "id": "q4",
+          "concept": "Conductors and insulators",
+          "at": "2025-09-13T22:10:38.451457"
+        },
+        {
+          "id": "q3",
+          "concept": "Electric circuit components",
+          "at": "2025-09-13T22:10:48.100140"
+        },
+        {
+          "id": "q7",
+          "concept": "Series circuit behavior",
+          "at": "2025-09-13T22:11:22.206251"
+        },
+        {
+          "id": "q2",
+          "concept": "Conductors and insulators",
+          "at": "2025-09-13T22:11:31.656123"
+        },
+        {
+          "id": "q1",
+          "concept": "Electric circuits",
+          "at": "2025-09-13T22:12:00.488971"
+        },
+        {
+          "id": "q5",
+          "concept": "Electric circuit continuity",
+          "at": "2025-09-13T22:12:37.118110"
+        }
+      ],
+      "last_macro_prompt_at": "2025-09-13T22:10:51.274633",
+      "macro_history": [
+        {
+          "generated_at": "2025-09-13T22:10:51.274633",
+          "chunk_ids": [
+            "q4",
+            "q3"
+          ],
+          "prompt": "Macro-Synthesis: You've just worked through 2 micro-points about electricity-class6. Now synthesize: Describe how these pieces connect to explain the bigger idea of electricity-class6. Include cause-effect links, sequences, and why this matters in real life. They covered micro-concepts: Conductors and insulators, Electric circuit components.",
+          "student_response": null
+        }
+      ]
+    }
+  }
+}

@@ -286,6 +286,17 @@
             border-left: 5px solid #4a90e2;
         }
 
+        .rich-hint-grid { display:grid; gap:14px; margin-top:14px; }
+        .rich-section { background:#fff; border:1px solid #e2e8f0; padding:12px 14px; border-radius:12px; }
+        .rich-section h4 { margin:0 0 6px; font-size:0.85rem; letter-spacing:.5px; color:#4a5568; text-transform:uppercase; }
+        .steps-list { list-style:decimal; margin:4px 0 0 18px; padding:0; }
+        .steps-list li { margin-bottom:4px; font-size:0.9rem; }
+        .mnemonic-pill { display:inline-block; background:#e3f2fd; color:#1e3a8a; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; }
+        .encouragement { font-weight:600; color:#2563eb; }
+        .misconception { color:#b45309; font-size:0.85rem; }
+        .answer-rationale { font-size:0.85rem; color:#374151; line-height:1.4; }
+        .toggle-link { cursor:pointer; color:#2563eb; font-size:0.75rem; font-weight:600; margin-left:6px; }
+
         .hint-area.show {
             display: block;
             animation: fadeIn 0.5s ease;
@@ -595,6 +606,7 @@
         .overlay.show {
             display: block;
         }
+
     </style>
 </head>
 <body>
@@ -669,6 +681,9 @@
             <div class="hint-area" id="hintArea">
                 <div class="hint-title">💡 AI Hint</div>
                 <div class="hint-content" id="hintContent"></div>
+                <div id="richHintContainer" style="display:none;">
+                    <div class="rich-hint-grid" id="richHintGrid"></div>
+                </div>
             </div>
 
             <div class="action-buttons">
@@ -723,6 +738,7 @@
         <div class="achievement-description" id="achievementDescription">You've completed your first lesson!</div>
         <button class="btn btn-primary" onclick="closeAchievement()">Awesome!</button>
     </div>
+
 
     <script>
         // Global State Management
@@ -1096,26 +1112,43 @@
             const question = AppState.questions[AppState.currentQuestionIndex];
             const hintArea = document.getElementById('hintArea');
             const hintContent = document.getElementById('hintContent');
+            const richContainer = document.getElementById('richHintContainer');
+            const richGrid = document.getElementById('richHintGrid');
             
             document.querySelector('.hint-title').textContent = '💡 AI Hint';
             hintContent.innerHTML = '<div style="text-align: center;">🤖 Thinking...</div>';
             hintArea.classList.add('show');
+            richContainer.style.display = 'none';
+            richGrid.innerHTML = '';
             
             try {
-                const response = await fetch(`${API_BASE}/hint/ai`, {
+                const response = await fetch(`${API_BASE}/hint/ai?mode=rich`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         question: question.text,
                         options: question.options,
                         concept: question.concept,
-                        hint_type: "guidance"
+                        question_id: question.id,
+                        mode: 'rich'
                     })
                 });
 
                 if (response.ok) {
                     const data = await response.json();
-                    hintContent.innerHTML = data.hint || data.explanation || 'Consider the key concepts related to this topic.';
+                    if (data.mode === 'rich') {
+                        hintContent.innerHTML = `<strong>${data.hint || 'Reflect on the core concept.'}</strong>`;
+                        const steps = (data.steps || []).map(s => `<li>${s}</li>`).join('');
+                        const misconception = data.misconception ? `<div class="rich-section"><h4>Misconception</h4><div class="misconception">${data.misconception}</div></div>` : '';
+                        const mnemonic = data.mnemonic ? `<div class="rich-section"><h4>Mnemonic</h4><div class="mnemonic-pill">${data.mnemonic}</div></div>` : '';
+                        const conceptRecap = data.concept_recap ? `<div class="rich-section"><h4>Concept Recap</h4><div>${data.concept_recap}</div></div>` : '';
+                        const stepBlock = steps ? `<div class="rich-section"><h4>Steps</h4><ol class="steps-list">${steps}</ol></div>` : '';
+                        const encouragement = data.encouragement ? `<div class="rich-section"><h4>Encouragement</h4><div class="encouragement">${data.encouragement}</div></div>` : '';
+                        richGrid.innerHTML = conceptRecap + stepBlock + misconception + mnemonic + encouragement;
+                        richContainer.style.display = 'block';
+                    } else {
+                        hintContent.innerHTML = data.hint || data.explanation || 'Consider the key concepts related to this topic.';
+                    }
                 } else {
                     throw new Error('AI hint not available');
                 }
@@ -1161,7 +1194,7 @@
             
             try {
                 // Check answer via API
-                const response = await fetch(`${API_BASE}/answer/check`, {
+                const response = await fetch(`${API_BASE}/answer/check?rich_explanation=true`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1177,6 +1210,13 @@
                     isCorrect = result.correct;
                     correctAnswer = result.correct_option;
                     explanation = result.explanation || '';
+                    // If rich tutoring present, show immediately (for both correct & wrong to reinforce learning)
+                    if (result.rich_tutoring) {
+                        renderRichExplanation(result, question, isCorrect);
+                    }
+                    if (!isCorrect && result.wrong_analysis && !result.rich_tutoring) {
+                        renderWrongOnlyAnalysis(result.wrong_analysis);
+                    }
                     
                     console.log('=== API VALIDATION RESULT ===');
                     console.log('Question:', question.text);
@@ -1237,21 +1277,13 @@
             console.log('Buttons updated immediately after submit');
             
             if (!isCorrect) {
-                // Validate that we have the selected option element
                 if (options.length > AppState.selectedOption && AppState.selectedOption >= 0) {
                     options[AppState.selectedOption].classList.add('incorrect');
-                } else {
-                    console.error('Invalid selected option index:', AppState.selectedOption, 'Options available:', options.length);
                 }
-                
-                // Show explanation for wrong answers
-                if (explanation && explanation.trim()) {
+                if (!explanation && !document.getElementById('richHintContainer').style.display === 'block') {
+                    showAIExplanation(question).catch(()=>{});
+                } else if (explanation && !document.getElementById('richHintContainer').style.display === 'block') {
                     showExplanation(explanation);
-                } else {
-                    // Fallback to AI explanation if no API explanation available
-                    showAIExplanation(question).catch(error => {
-                        console.error('Error showing AI explanation:', error);
-                    });
                 }
             }
             
@@ -1317,6 +1349,39 @@
             hintArea.classList.add('show');
             
             console.log('Showing API explanation:', explanation);
+        }
+
+        function renderRichExplanation(result, question, isCorrect) {
+            const hintArea = document.getElementById('hintArea');
+            const hintContent = document.getElementById('hintContent');
+            const richContainer = document.getElementById('richHintContainer');
+            const richGrid = document.getElementById('richHintGrid');
+            hintArea.classList.add('show');
+            document.querySelector('.hint-title').textContent = isCorrect ? '🎯 Deep Understanding' : '🤔 Let\'s Learn From This';
+            const rt = result.rich_tutoring || {};
+            hintContent.innerHTML = `<strong>${rt.hint || 'Focus on the core rule.'}</strong>`;
+            const steps = (rt.steps||[]).map(s=>`<li>${s}</li>`).join('');
+            const blocks = [];
+            if (rt.concept_recap) blocks.push(`<div class='rich-section'><h4>Concept Recap</h4><div>${rt.concept_recap}</div></div>`);
+            if (steps) blocks.push(`<div class='rich-section'><h4>Steps</h4><ol class='steps-list'>${steps}</ol></div>`);
+            if (rt.misconception) blocks.push(`<div class='rich-section'><h4>Misconception</h4><div class='misconception'>${rt.misconception}</div></div>`);
+            if (rt.mnemonic) blocks.push(`<div class='rich-section'><h4>Mnemonic</h4><div class='mnemonic-pill'>${rt.mnemonic}</div></div>`);
+            if (rt.wrong_option_explanation && !isCorrect) blocks.push(`<div class='rich-section'><h4>Your Choice</h4><div>${rt.wrong_option_explanation}</div></div>`);
+            if (rt.answer_explanation) blocks.push(`<div class='rich-section'><h4>Why Correct</h4><div class='answer-rationale'>${rt.answer_explanation}</div></div>`);
+            if (rt.answer_validation_rationale) blocks.push(`<div class='rich-section'><h4>Logic Chain</h4><div class='answer-rationale'>${rt.answer_validation_rationale}</div></div>`);
+            if (rt.encouragement) blocks.push(`<div class='rich-section'><h4>Keep Going</h4><div class='encouragement'>${rt.encouragement}</div></div>`);
+            richGrid.innerHTML = blocks.join('');
+            richContainer.style.display = 'block';
+        }
+
+        function renderWrongOnlyAnalysis(analysis) {
+            const hintArea = document.getElementById('hintArea');
+            const hintContent = document.getElementById('hintContent');
+            hintArea.classList.add('show');
+            document.querySelector('.hint-title').textContent = '🤔 Why This Was Wrong';
+            const wrong = analysis.wrong_option_explanation || analysis.analysis || 'Review the definition and compare carefully.';
+            const contrast = analysis.contrast_with_correct ? `<div style='margin-top:8px;'><strong>Why Correct:</strong> ${analysis.contrast_with_correct}</div>` : '';
+            hintContent.innerHTML = `<div style='background:#fff;border:1px solid #e2e8f0;padding:12px 14px;border-radius:12px;'>${wrong}${contrast}</div>`;
         }
 
         async function showAIExplanation(question) {
@@ -1649,6 +1714,11 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Macro-Synthesis feature fully removed (JS cleanup)
+        // All macro-related functions, elements, and network calls were deleted to simplify the app
+        // Ensure no stray references remain; this comment marks the previous integration point.
+        // ---------------------------------------------------------------
     </script>
 </body>
 </html>

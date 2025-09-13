@@ -1,0 +1,51 @@
+{
+  "s1": {
+    "photosynthesis": {
+      "recent_chunks": [
+        {
+          "id": "card0",
+          "concept": "step0",
+          "at": "2025-09-13T21:40:09.779845"
+        },
+        {
+          "id": "card1",
+          "concept": "step1",
+          "at": "2025-09-13T21:40:09.788209"
+        },
+        {
+          "id": "card2",
+          "concept": "step2",
+          "at": "2025-09-13T21:40:09.796751"
+        },
+        {
+          "id": "card3",
+          "concept": "step3",
+          "at": "2025-09-13T21:40:09.802757"
+        },
+        {
+          "id": "card4",
+          "concept": "step4",
+          "at": "2025-09-13T21:40:09.810291"
+        }
+      ],
+      "last_macro_prompt_at": "2025-09-13T21:40:09.817297",
+      "macro_history": [
+        {
+          "generated_at": "2025-09-13T21:40:09.817297",
+          "chunk_ids": [
+            "card0",
+            "card1",
+            "card2",
+            "card3",
+            "card4"
+          ],
+          "prompt": "Macro-Synthesis: You've just worked through 5 micro-points about photosynthesis. Now synthesize: Describe how these pieces connect to explain the bigger idea of photosynthesis. Include cause-effect links, sequences, and why this matters in real life. They covered micro-concepts: step0, step1, step2, step3, step4.",
+          "student_response": {
+            "text": "Plants convert light to chemical energy.",
+            "submitted_at": "2025-09-13T21:40:09.825643"
+          }
+        }
+      ]
+    }
+  }
+}

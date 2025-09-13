@@ -9,41 +9,44 @@ data_loader = DataLoader()
 
 @ai_bp.route('/hint', methods=['POST'])
 def get_hint():
-    """
-    Get AI-generated hint for a question
-    Expected payload: {
-        "question_id": int,
-        "user_attempt": string (optional)
-    }
+    """AI-generated hint for a question.
+    Modes:
+      - default: simple free-text hint
+      - rich: structured JSON with multi-layer tutoring (set payload {"mode":"rich"} or query ?mode=rich)
+    Expected payload: { question_id:int, user_attempt?:str, mode?:"rich" }
     """
     try:
-        data = request.get_json()
+        data = request.get_json() or {}
         question_id = data.get('question_id')
-        user_attempt = data.get('user_attempt', None)
-        
-        # Get question data from dataset
+        user_attempt = data.get('user_attempt')
+        mode = data.get('mode') or request.args.get('mode','default')
+
+        if not question_id:
+            return jsonify({"success": False, "error": "question_id required"}), 400
+
         question_data = data_loader.get_question_by_id(question_id)
         if not question_data:
+            return jsonify({"success": False, "error": "Question not found"}), 404
+
+        if mode == 'rich':
+            rich = ai_service.get_rich_hint(question_data, user_attempt)
             return jsonify({
-                "error": "Question not found",
-                "success": False
-            }), 404
-        
-        # Generate hint using AI service
-        hint_response = ai_service.get_hint(question_data, user_attempt)
-        
-        return jsonify({
-            "success": True,
-            "hint": hint_response['content'],
-            "question_id": question_id,
-            "gamify_suggestion": question_data.get('gamify', '')
-        })
-        
+                'success': True,
+                'mode': 'rich',
+                'question_id': question_id,
+                **rich
+            })
+        else:
+            hint_response = ai_service.get_hint(question_data, user_attempt)
+            return jsonify({
+                'success': True,
+                'mode': 'simple',
+                'hint': hint_response.get('content'),
+                'question_id': question_id,
+                'gamify_suggestion': question_data.get('gamify','')
+            })
     except Exception as e:
-        return jsonify({
-            "error": str(e),
-            "success": False
-        }), 500
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 @ai_bp.route('/mnemonic', methods=['POST'])
 def get_mnemonic():
