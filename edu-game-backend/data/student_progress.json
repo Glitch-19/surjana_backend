@@ -1,0 +1,33 @@
+{
+  "default": {
+    "xp": 525,
+    "tokens": 60,
+    "streak": 0,
+    "level": 6,
+    "lessons_completed": {},
+    "subjects_progress": {
+      "science": 0,
+      "maths": 0
+    },
+    "daily_progress": 0,
+    "achievements": [],
+    "total_questions_answered": 0,
+    "correct_answers": 0
+  },
+  "student123": {
+    "xp": 0,
+    "tokens": 0,
+    "streak": 0,
+    "level": 1,
+    "lessons_completed": {},
+    "subjects_progress": {
+      "science": 0,
+      "maths": 0
+    },
+    "daily_progress": 5,
+    "achievements": [],
+    "total_questions_answered": 50,
+    "correct_answers": 350,
+    "last_activity": "2025-09-14T01:31:04.792669"
+  }
+}

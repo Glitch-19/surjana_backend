@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Quest - Mario-Style Educational Adventure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 50%, #8B4513 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .game-world {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="clouds" x="0" y="0" width="20" height="10" patternUnits="userSpaceOnUse"><ellipse cx="10" cy="5" rx="8" ry="3" fill="%23ffffff" opacity="0.8"/></pattern><pattern id="ground" x="0" y="15" width="10" height="5" patternUnits="userSpaceOnUse"><rect width="10" height="5" fill="%23228B22"/><rect x="0" y="0" width="10" height="1" fill="%2332CD32"/></pattern></defs><rect width="100" height="15" fill="url(%23clouds)"/><rect y="15" width="100" height="5" fill="url(%23ground)"/></svg>') repeat-x;
+            background-size: 800px 200px;
+        }
+
+        .mario-character {
+            position: absolute;
+            bottom: 150px;
+            left: 100px;
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(45deg, #FF0000, #FF6B6B);
+            border-radius: 30px 30px 10px 10px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .mario-character::before {
+            content: '👨‍🎓';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+        }
+
+        .mario-character.jumping {
+            bottom: 250px;
+            animation: jump 0.8s ease-in-out;
+        }
+
+        @keyframes jump {
+            0%, 100% { bottom: 150px; }
+            50% { bottom: 350px; }
+        }
+
+        .platform {
+            position: absolute;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 3px solid #654321;
+        }
+
+        .platform.locked {
+            background: linear-gradient(45deg, #696969, #A9A9A9);
+            border-color: #2F4F4F;
+        }
+
+        .platform.unlocked {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-color: #DAA520;
+            animation: glow 2s infinite;
+        }
+
+        .platform.completed {
+            background: linear-gradient(45deg, #00FF00, #32CD32);
+            border-color: #228B22;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 4px 8px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 4px 20px rgba(255,215,0,0.8); }
+        }
+
+        .question-portal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+        }
+
+        .question-portal.active {
+            display: flex;
+        }
+
+        .portal-content {
+            background: linear-gradient(135deg, #4B0082 0%, #8A2BE2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid #FFD700;
+        }
+
+        .portal-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .level-info {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #ADD8E6;
+        }
+
+        .question-text {
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            background: linear-gradient(45deg, #1E90FF, #4169E1);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .option-btn:hover {
+            background: linear-gradient(45deg, #4169E1, #0000FF);
+            border-color: #FFD700;
+            transform: scale(1.05);
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-color: #FF6347;
+            color: #000;
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(45deg, #00FF00, #32CD32);
+            border-color: #228B22;
+        }
+
+        .option-btn.incorrect {
+            background: linear-gradient(45deg, #FF6347, #DC143C);
+            border-color: #8B0000;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #FF6347, #FF4500);
+            color: white;
+        }
+
+        .hint-btn {
+            background: linear-gradient(45deg, #9370DB, #8A2BE2);
+            color: white;
+        }
+
+        .continue-btn {
+            background: linear-gradient(45deg, #00FF00, #32CD32);
+            color: white;
+            display: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .feedback-area {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            display: none;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .feedback-area.correct {
+            background: linear-gradient(45deg, rgba(0,255,0,0.2), rgba(50,205,50,0.2));
+            border: 2px solid #00FF00;
+            color: #00FF00;
+            display: block;
+        }
+
+        .feedback-area.incorrect {
+            background: linear-gradient(45deg, rgba(255,0,0,0.2), rgba(220,20,60,0.2));
+            border: 2px solid #FF6347;
+            color: #FF6B6B;
+            display: block;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            transition: width 0.5s ease;
+            border-radius: 0 5px 0 0;
+        }
+
+        .game-ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-weight: bold;
+            z-index: 100;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .coins-display {
+            font-size: 24px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .tokens-display {
+            font-size: 20px;
+            color: #FF69B4;
+            margin-bottom: 10px;
+        }
+
+        .level-display {
+            font-size: 18px;
+            color: #87CEEB;
+            margin-bottom: 10px;
+        }
+
+        .shop-btn {
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .world-title {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .controls-help {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+        }
+
+        .mnemonic-helper {
+            margin-top: 15px;
+            padding: 15px;
+            background: linear-gradient(45deg, rgba(255,215,0,0.2), rgba(255,140,0,0.2));
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            color: #FFD700;
+            font-style: italic;
+        }
+
+        .victory-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: #FFD700;
+            display: none;
+            z-index: 1001;
+            animation: celebrate 2s ease-in-out;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.5) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-world">
+        <div class="mario-character" id="mario"></div>
+        
+        <div class="game-ui">
+            <div class="coins-display">🪙 Coins: <span id="coinsCount">0</span></div>
+            <div class="tokens-display">🎫 Tokens: <span id="tokensCount">0</span></div>
+            <div class="level-display">Level: <span id="currentLevel">1</span></div>
+            <button class="shop-btn" onclick="openRewardsShop()">🏪 Shop</button>
+        </div>
+
+        <div class="world-title" id="worldTitle">🏰 Learning Kingdom - World 1</div>
+
+        <!-- Platforms will be generated dynamically -->
+        <div id="platformsContainer"></div>
+
+        <div class="question-portal" id="questionPortal">
+            <div class="portal-content">
+                <div class="portal-title" id="portalTitle">🎯 Knowledge Challenge</div>
+                <div class="level-info" id="levelInfo">Complete this challenge to unlock the next platform!</div>
+                <div class="question-text" id="questionText">Loading question...</div>
+                <div class="options-grid" id="optionsGrid"></div>
+                <div class="feedback-area" id="feedbackArea"></div>
+                <div class="mnemonic-helper" id="mnemonicHelper" style="display: none;"></div>
+                <div class="action-buttons">
+                    <button class="btn submit-btn" id="submitBtn">Submit Answer</button>
+                    <button class="btn hint-btn" id="hintBtn">Get AI Hint 💡</button>
+                    <button class="btn continue-btn" id="continueBtn">Continue Adventure!</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+        <div class="victory-animation" id="victoryAnimation">🏆 LEVEL COMPLETE! 🎉</div>
+
+        <div class="controls-help">
+            Use ARROW KEYS to move Mario • SPACEBAR to jump • Click platforms to solve questions!
+        </div>
+    </div>
+
+    <script>
+        // Game Configuration
+        const API_BASE = 'http://localhost:5000/api';
+        
+        // Game State
+        let gameState = {
+            currentLevel: 1,
+            totalLevels: 10,
+            coins: 0,
+            tokens: 0,
+            completedPlatforms: [],
+            unlockedPlatforms: [0], // First platform is always unlocked
+            marioPosition: { x: 100, y: 150 },
+            sessionId: null,
+            worldTheme: 'castle' // castle, forest, space, underwater
+        };
+
+        // Level Configuration
+        const levels = [
+            {
+                id: 1,
+                title: "🏰 Castle of Numbers",
+                subject: "Mathematics",
+                class: 6,
+                difficulty: "easy",
+                platforms: [
+                    { x: 200, y: 300, width: 120, height: 60, label: "Basic Math", unlocked: true },
+                    { x: 400, y: 250, width: 120, height: 60, label: "Fractions", unlocked: false },
+                    { x: 600, y: 200, width: 120, height: 60, label: "Decimals", unlocked: false },
+                    { x: 800, y: 150, width: 120, height: 60, label: "Boss Fight", unlocked: false }
+                ]
+            },
+            {
+                id: 2,
+                title: "🌿 Science Forest",
+                subject: "Science",
+                class: 7,
+                difficulty: "medium",
+                platforms: [
+                    { x: 200, y: 300, width: 120, height: 60, label: "Plants", unlocked: false },
+                    { x: 400, y: 250, width: 120, height: 60, label: "Animals", unlocked: false },
+                    { x: 600, y: 200, width: 120, height: 60, label: "Ecosystems", unlocked: false },
+                    { x: 800, y: 150, width: 120, height: 60, label: "Boss Fight", unlocked: false }
+                ]
+            }
+        ];
+
+        let currentQuestionData = null;
+        let selectedOption = null;
+
+        // Initialize Game
+        async function initGame() {
+            try {
+                // Start session with backend
+                const response = await fetch(`${API_BASE}/subway-surfer/start`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        player_name: prompt('Enter your hero name:') || 'Learning Hero'
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    gameState.sessionId = data.session_id;
+                }
+            } catch (error) {
+                console.error('Failed to initialize session:', error);
+            }
+
+            setupLevel(gameState.currentLevel);
+            setupKeyboardControls();
+            updateUI();
+        }
+
+        function setupLevel(levelIndex) {
+            const level = levels[levelIndex - 1];
+            if (!level) return;
+
+            document.getElementById('worldTitle').textContent = level.title;
+            
+            // Clear existing platforms
+            const container = document.getElementById('platformsContainer');
+            container.innerHTML = '';
+
+            // Create platforms
+            level.platforms.forEach((platform, index) => {
+                const platformEl = document.createElement('div');
+                platformEl.className = 'platform';
+                platformEl.style.left = platform.x + 'px';
+                platformEl.style.bottom = platform.y + 'px';
+                platformEl.style.width = platform.width + 'px';
+                platformEl.style.height = platform.height + 'px';
+                platformEl.textContent = platform.label;
+                platformEl.dataset.index = index;
+
+                // Set platform state
+                if (gameState.completedPlatforms.includes(`${levelIndex}-${index}`)) {
+                    platformEl.classList.add('completed');
+                } else if (gameState.unlockedPlatforms.includes(index)) {
+                    platformEl.classList.add('unlocked');
+                    platformEl.onclick = () => startChallenge(levelIndex, index);
+                } else {
+                    platformEl.classList.add('locked');
+                }
+
+                container.appendChild(platformEl);
+            });
+
+            updateProgressBar();
+        }
+
+        async function startChallenge(levelIndex, platformIndex) {
+            const level = levels[levelIndex - 1];
+            const platform = level.platforms[platformIndex];
+
+            try {
+                // Fetch question from API
+                const response = await fetch(`${API_BASE}/subway-surfer/question`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        session_id: gameState.sessionId,
+                        level: levelIndex,
+                        platform: platformIndex
+                    })
+                });
+
+                const data = await response.json();
+                let question = data.success ? data.question : getOfflineQuestion(level);
+
+                showQuestionPortal(question, levelIndex, platformIndex);
+            } catch (error) {
+                console.error('Failed to fetch question:', error);
+                showQuestionPortal(getOfflineQuestion(level), levelIndex, platformIndex);
+            }
+        }
+
+        function getOfflineQuestion(level) {
+            const offlineQuestions = {
+                "Mathematics": [
+                    {
+                        id: "math_1",
+                        question: "What is 24 ÷ 6?",
+                        options: ["3", "4", "5", "6"],
+                        correct: 1,
+                        explanation: "24 ÷ 6 = 4. Think of it as: How many groups of 6 can you make from 24?",
+                        mnemonic: "Remember: 6 × 4 = 24, so 24 ÷ 6 = 4!"
+                    },
+                    {
+                        id: "math_2", 
+                        question: "Which fraction is equivalent to 1/2?",
+                        options: ["2/3", "3/6", "2/5", "4/8"],
+                        correct: 3,
+                        explanation: "4/8 = 1/2 because 4 is half of 8",
+                        mnemonic: "Half means divide by 2: 4÷2 = 2, 8÷2 = 4, so 4/8 = 2/4 = 1/2"
+                    }
+                ],
+                "Science": [
+                    {
+                        id: "science_1",
+                        question: "What do plants need for photosynthesis?",
+                        options: ["Only water", "Only sunlight", "Sunlight, CO2, and water", "Only soil"],
+                        correct: 2,
+                        explanation: "Plants need sunlight, carbon dioxide (CO2), and water for photosynthesis",
+                        mnemonic: "SUN-CO2-WATER = Super Cool Way to make food! 🌱☀️💧"
+                    }
+                ]
+            };
+
+            const questions = offlineQuestions[level.subject] || offlineQuestions["Mathematics"];
+            return questions[Math.floor(Math.random() * questions.length)];
+        }
+
+        function showQuestionPortal(question, levelIndex, platformIndex) {
+            currentQuestionData = { question, levelIndex, platformIndex };
+            selectedOption = null;
+
+            document.getElementById('portalTitle').textContent = `🎯 Platform ${platformIndex + 1} Challenge`;
+            document.getElementById('levelInfo').textContent = `Complete this ${question.subject || 'Knowledge'} challenge to unlock the next platform!`;
+            document.getElementById('questionText').textContent = question.question;
+
+            // Create options
+            const optionsGrid = document.getElementById('optionsGrid');
+            optionsGrid.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionBtn = document.createElement('div');
+                optionBtn.className = 'option-btn';
+                optionBtn.textContent = option;
+                optionBtn.onclick = () => selectOption(index);
+                optionsGrid.appendChild(optionBtn);
+            });
+
+            // Reset UI
+            document.getElementById('feedbackArea').style.display = 'none';
+            document.getElementById('mnemonicHelper').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('continueBtn').style.display = 'none';
+
+            document.getElementById('questionPortal').classList.add('active');
+        }
+
+        function selectOption(index) {
+            selectedOption = index;
+            
+            // Update visual selection
+            document.querySelectorAll('.option-btn').forEach((btn, i) => {
+                btn.classList.toggle('selected', i === index);
+            });
+        }
+
+        async function submitAnswer() {
+            if (selectedOption === null) {
+                alert('Please select an answer first! 🤔');
+                return;
+            }
+
+            const question = currentQuestionData.question;
+            const isCorrect = selectedOption === question.correct;
+
+            try {
+                if (gameState.sessionId) {
+                    const response = await fetch(`${API_BASE}/subway-surfer/answer`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            session_id: gameState.sessionId,
+                            question_id: question.id,
+                            answer_index: selectedOption,
+                            response_time: 5000
+                        })
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        handleAnswerResult(data.correct, data.explanation, data.ai_hint);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error('API call failed:', error);
+            }
+
+            // Fallback to offline processing
+            handleAnswerResult(isCorrect, question.explanation, null);
+        }
+
+        function handleAnswerResult(isCorrect, explanation, aiHint) {
+            const question = currentQuestionData.question;
+            
+            // Show correct answer
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                if (index === question.correct) {
+                    btn.classList.add('correct');
+                } else if (index === selectedOption && !isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            // Show feedback
+            const feedbackArea = document.getElementById('feedbackArea');
+            const mnemonicHelper = document.getElementById('mnemonicHelper');
+
+            if (isCorrect) {
+                feedbackArea.className = 'feedback-area correct';
+                feedbackArea.textContent = `🎉 Excellent! ${explanation}`;
+                
+                // Show mnemonic for theory questions
+                if (question.mnemonic) {
+                    mnemonicHelper.style.display = 'block';
+                    mnemonicHelper.innerHTML = `💡 <strong>Memory Trick:</strong> ${question.mnemonic}`;
+                }
+
+                // Unlock next platform
+                unlockNextPlatform();
+                
+                // Reward coins and tokens
+                gameState.coins += 50;
+                if (Math.random() < 0.3) { // 30% chance for token
+                    gameState.tokens += 1;
+                    feedbackArea.textContent += ' 🎫 Bonus Token Earned!';
+                    // Award token through API
+                    awardToken('quiz_good', question.subject, 100);
+                }
+                
+                // Award token for correct answer
+                awardToken('first_attempt_correct', question.subject, 100);
+
+                // Victory animation
+                showVictoryAnimation();
+            } else {
+                feedbackArea.className = 'feedback-area incorrect';
+                feedbackArea.textContent = `🤔 Not quite right. ${explanation}`;
+                
+                if (aiHint) {
+                    feedbackArea.textContent += `\n\n💡 AI Tutor says: ${aiHint}`;
+                }
+                
+                if (question.mnemonic) {
+                    mnemonicHelper.style.display = 'block';
+                    mnemonicHelper.innerHTML = `💡 <strong>Learning Tip:</strong> ${question.mnemonic}`;
+                }
+            }
+
+            updateUI();
+            
+            // Hide submit button, show continue
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('continueBtn').style.display = 'inline-block';
+        }
+
+        function unlockNextPlatform() {
+            const { levelIndex, platformIndex } = currentQuestionData;
+            const platformKey = `${levelIndex}-${platformIndex}`;
+            
+            if (!gameState.completedPlatforms.includes(platformKey)) {
+                gameState.completedPlatforms.push(platformKey);
+                
+                // Unlock next platform
+                if (platformIndex + 1 < levels[levelIndex - 1].platforms.length) {
+                    if (!gameState.unlockedPlatforms.includes(platformIndex + 1)) {
+                        gameState.unlockedPlatforms.push(platformIndex + 1);
+                    }
+                }
+            }
+        }
+
+        async function getAIHint() {
+            if (!currentQuestionData) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/ai/hint`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        question: currentQuestionData.question.question,
+                        options: currentQuestionData.question.options,
+                        subject: currentQuestionData.question.subject || 'General'
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert(`💡 AI Tutor: ${data.hint}`);
+                } else {
+                    alert('💡 AI Tutor: Think about the key concepts in this topic. What have you learned about this subject?');
+                }
+            } catch (error) {
+                alert('💡 AI Tutor: Break down the question step by step. What clues can you find in the question itself?');
+            }
+        }
+
+        function continueAdventure() {
+            document.getElementById('questionPortal').classList.remove('active');
+            setupLevel(gameState.currentLevel);
+            
+            // Check if level is complete
+            const level = levels[gameState.currentLevel - 1];
+            const levelKey = gameState.currentLevel;
+            const completedInLevel = gameState.completedPlatforms.filter(p => p.startsWith(`${levelKey}-`)).length;
+            
+            if (completedInLevel === level.platforms.length) {
+                // Level complete! Move to next level
+                if (gameState.currentLevel < gameState.totalLevels) {
+                    gameState.currentLevel++;
+                    gameState.unlockedPlatforms = [0]; // Reset unlocked platforms for new level
+                    setTimeout(() => {
+                        alert(`🏆 Level ${gameState.currentLevel - 1} Complete! Moving to ${levels[gameState.currentLevel - 1].title}`);
+                        setupLevel(gameState.currentLevel);
+                    }, 500);
+                } else {
+                    alert('🎉 Congratulations! You have completed all levels! You are now a Learning Master! 🏆');
+                }
+            }
+        }
+
+        function showVictoryAnimation() {
+            const animation = document.getElementById('victoryAnimation');
+            animation.style.display = 'block';
+            setTimeout(() => {
+                animation.style.display = 'none';
+            }, 2000);
+        }
+
+        function setupKeyboardControls() {
+            document.addEventListener('keydown', (e) => {
+                const mario = document.getElementById('mario');
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        if (gameState.marioPosition.x > 50) {
+                            gameState.marioPosition.x -= 20;
+                            mario.style.left = gameState.marioPosition.x + 'px';
+                        }
+                        break;
+                    case 'ArrowRight':
+                        if (gameState.marioPosition.x < window.innerWidth - 100) {
+                            gameState.marioPosition.x += 20;
+                            mario.style.left = gameState.marioPosition.x + 'px';
+                        }
+                        break;
+                    case ' ':
+                        e.preventDefault();
+                        mario.classList.add('jumping');
+                        setTimeout(() => mario.classList.remove('jumping'), 800);
+                        break;
+                }
+            });
+        }
+
+        function updateUI() {
+            document.getElementById('coinsCount').textContent = gameState.coins;
+            document.getElementById('tokensCount').textContent = gameState.tokens;
+            document.getElementById('currentLevel').textContent = gameState.currentLevel;
+        }
+
+        // Token earning system
+        async function awardToken(achievementType, subject, score) {
+            try {
+                const response = await fetch('/api/rewards/tokens/earn', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        student_id: 'student123', // This would come from user session
+                        achievement_type: achievementType,
+                        subject: subject || 'General',
+                        score: score || 0
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    console.log(`Awarded ${data.tokens_earned} tokens for ${achievementType}!`);
+                    // You could show a token animation here
+                    showTokenAnimation(data.tokens_earned);
+                }
+            } catch (error) {
+                console.error('Failed to award tokens:', error);
+            }
+        }
+
+        function showTokenAnimation(tokensEarned) {
+            // Create floating token animation
+            const tokenFloat = document.createElement('div');
+            tokenFloat.innerHTML = `🪙 +${tokensEarned}`;
+            tokenFloat.style.cssText = `
+                position: fixed;
+                top: 20%;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 2rem;
+                font-weight: bold;
+                color: #ffd700;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                z-index: 10000;
+                pointer-events: none;
+                animation: floatUp 2s ease-out;
+            `;
+            document.body.appendChild(tokenFloat);
+
+            setTimeout(() => {
+                document.body.removeChild(tokenFloat);
+            }, 2000);
+        }
+
+        // Add CSS for token animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-100px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function updateProgressBar() {
+            const level = levels[gameState.currentLevel - 1];
+            const completed = gameState.completedPlatforms.filter(p => p.startsWith(`${gameState.currentLevel}-`)).length;
+            const percentage = (completed / level.platforms.length) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        // Event Listeners
+        document.getElementById('submitBtn').onclick = submitAnswer;
+        document.getElementById('hintBtn').onclick = getAIHint;
+        document.getElementById('continueBtn').onclick = continueAdventure;
+
+        // Shop function
+        function openRewardsShop() {
+            window.open('student_rewards_shop.html', '_blank', 'width=1200,height=800');
+        }
+
+        // Start the game
+        initGame();
+    </script>
+</body>
+</html>

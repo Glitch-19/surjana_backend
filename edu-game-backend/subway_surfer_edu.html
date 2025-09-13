@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Subway Surfer - Learn While You Play!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .game-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(to bottom, #87CEEB, #98FB98);
+        }
+
+        .game-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="track" x="0" y="0" width="33.333" height="100" patternUnits="userSpaceOnUse"><rect width="33.333" height="100" fill="%23654321"/><rect x="2" y="0" width="29.333" height="100" fill="%23708090"/></pattern></defs><rect width="100" height="100" fill="url(%23track)"/></svg>') repeat-y;
+            background-size: 300px 100px;
+            animation: trackScroll 2s linear infinite;
+        }
+
+        @keyframes trackScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        .game-paused .game-canvas {
+            animation-play-state: paused;
+        }
+
+        .player {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            border-radius: 30px 30px 10px 10px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .player.jumping {
+            bottom: 200px;
+            animation: jump 0.6s ease-in-out;
+        }
+
+        @keyframes jump {
+            0%, 100% { bottom: 100px; }
+            50% { bottom: 300px; }
+        }
+
+        .player.sliding {
+            height: 40px;
+            bottom: 80px;
+        }
+
+        .obstacle {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background: #8B0000;
+            border-radius: 10px;
+            animation: obstacleMove 3s linear infinite;
+        }
+
+        @keyframes obstacleMove {
+            from { top: -60px; }
+            to { top: 100vh; }
+        }
+
+        .coin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: gold;
+            border-radius: 50%;
+            animation: obstacleMove 3s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        .powerup {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #9932CC;
+            border-radius: 50%;
+            animation: obstacleMove 3s linear infinite;
+            box-shadow: 0 0 15px rgba(153, 50, 204, 0.8);
+        }
+
+        .game-ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-weight: bold;
+            z-index: 100;
+        }
+
+        .score {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .distance {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .coins-count {
+            font-size: 18px;
+            color: gold;
+        }
+
+        .question-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            padding: 20px;
+        }
+
+        .question-overlay.active {
+            display: flex;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .question-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #FFD700;
+        }
+
+        .option.selected {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #FFD700;
+        }
+
+        .option.correct {
+            background: rgba(0, 255, 0, 0.3);
+            border-color: #00FF00;
+        }
+
+        .option.incorrect {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #FF0000;
+        }
+
+        .submit-btn, .continue-btn {
+            padding: 12px 30px;
+            background: #FFD700;
+            color: #333;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover, .continue-btn:hover {
+            background: #FFA500;
+            transform: scale(1.05);
+        }
+
+        .continue-btn {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .feedback {
+            margin: 20px 0;
+            font-size: 16px;
+            display: none;
+        }
+
+        .feedback.correct {
+            color: #00FF00;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            color: #FF6666;
+            display: block;
+        }
+
+        .game-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .pause-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.8);
+            display: none;
+            z-index: 500;
+        }
+
+        .game-paused .pause-indicator {
+            display: block;
+        }
+
+        .learning-stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-weight: bold;
+            z-index: 100;
+            text-align: right;
+        }
+
+        .correct-streak {
+            font-size: 18px;
+            color: #00FF00;
+            margin-bottom: 10px;
+        }
+
+        .learning-progress {
+            font-size: 14px;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <canvas class="game-canvas" id="gameCanvas" width="400" height="600"></canvas>
+        
+        <div class="player" id="player"></div>
+        
+        <div class="game-ui">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="distance">Distance: <span id="distance">0</span>m</div>
+            <div class="coins-count">Coins: <span id="coins">0</span></div>
+        </div>
+
+        <div class="learning-stats">
+            <div class="correct-streak">Streak: <span id="streak">0</span></div>
+            <div class="learning-progress">Questions Answered: <span id="questionsAnswered">0</span></div>
+        </div>
+
+        <div class="pause-indicator">⏸️ PAUSED FOR LEARNING</div>
+
+        <div class="question-overlay" id="questionOverlay">
+            <div class="question-box">
+                <div class="question-title">🎓 Learning Break!</div>
+                <div class="question-text" id="questionText">Loading question...</div>
+                <div class="options" id="optionsContainer"></div>
+                <div class="feedback" id="feedback"></div>
+                <button class="submit-btn" id="submitBtn">Submit Answer</button>
+                <button class="continue-btn" id="continueBtn">Continue Playing!</button>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <button class="control-btn" onclick="jump()">Jump (Space)</button>
+            <button class="control-btn" onclick="slide()">Slide (S)</button>
+            <button class="control-btn" onclick="moveLeft()">Left (A)</button>
+            <button class="control-btn" onclick="moveRight()">Right (D)</button>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let gameState = {
+            running: false,
+            paused: false,
+            score: 0,
+            distance: 0,
+            coins: 0,
+            streak: 0,
+            questionsAnswered: 0,
+            speed: 2,
+            questionInterval: 60000, // Show question every 60 seconds (1 minute)
+            lastQuestionTime: 0,
+            playerPosition: 1, // 0=left, 1=center, 2=right
+            isJumping: false,
+            isSliding: false,
+            gameObjects: []
+        };
+
+        // API Configuration
+        const API_BASE = 'http://localhost:5000/api/subway-surfer';
+        let sessionId = null;
+
+        let currentQuestion = null;
+        let gameLoop = null;
+        let questionTimeout = null;
+        let questionStartTime = 0;
+
+        // Initialize game
+        async function initGame() {
+            try {
+                // Start session with backend
+                const response = await fetch(`${API_BASE}/start`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        player_name: prompt('Enter your name:') || 'Anonymous Player'
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    sessionId = data.session_id;
+                    gameState.running = true;
+                    gameState.lastQuestionTime = Date.now();
+                    startGameLoop();
+                    
+                    // Auto-trigger first question after 30 seconds of gameplay
+                    setTimeout(() => fetchAndShowQuestion(), 30000);
+                } else {
+                    alert('Failed to start game: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Failed to initialize game:', error);
+                alert('Failed to connect to server. Using offline mode.');
+                // Fallback to offline mode
+                gameState.running = true;
+                gameState.lastQuestionTime = Date.now();
+                startGameLoop();
+                setTimeout(() => showOfflineQuestion(), 5000);
+            }
+        }
+
+        function startGameLoop() {
+            gameLoop = setInterval(() => {
+                if (!gameState.paused && gameState.running) {
+                    updateGame();
+                    
+                    // Check if it's time for a question
+                    if (Date.now() - gameState.lastQuestionTime > gameState.questionInterval) {
+                        fetchAndShowQuestion();
+                    }
+                }
+            }, 50);
+        }
+
+        function updateGame() {
+            gameState.distance += gameState.speed;
+            gameState.score += Math.floor(gameState.speed);
+            
+            // Update UI
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('distance').textContent = Math.floor(gameState.distance);
+            document.getElementById('coins').textContent = gameState.coins;
+            
+            // Increase difficulty over time
+            if (gameState.distance % 1000 === 0) {
+                gameState.speed += 0.1;
+                gameState.questionInterval = Math.max(10000, gameState.questionInterval - 500);
+            }
+            
+            // Spawn random game objects
+            if (Math.random() < 0.02) {
+                spawnGameObject();
+            }
+            
+            // Move existing objects
+            moveGameObjects();
+        }
+
+        function spawnGameObject() {
+            const lanes = [25, 50, 75]; // Left, center, right positions
+            const type = Math.random() < 0.7 ? 'coin' : (Math.random() < 0.8 ? 'obstacle' : 'powerup');
+            const lane = Math.floor(Math.random() * 3);
+            
+            const obj = document.createElement('div');
+            obj.className = type;
+            obj.style.left = lanes[lane] + '%';
+            obj.style.transform = 'translateX(-50%)';
+            
+            document.getElementById('gameContainer').appendChild(obj);
+            gameState.gameObjects.push({
+                element: obj,
+                type: type,
+                lane: lane,
+                collected: false
+            });
+        }
+
+        function moveGameObjects() {
+            gameState.gameObjects.forEach((obj, index) => {
+                const rect = obj.element.getBoundingClientRect();
+                if (rect.top > window.innerHeight) {
+                    obj.element.remove();
+                    gameState.gameObjects.splice(index, 1);
+                }
+                
+                // Check collision with player
+                if (!obj.collected && rect.bottom > window.innerHeight - 180 && 
+                    rect.top < window.innerHeight - 100 && obj.lane === gameState.playerPosition) {
+                    
+                    if (obj.type === 'coin') {
+                        gameState.coins += 10;
+                        gameState.score += 50;
+                        obj.collected = true;
+                        obj.element.style.opacity = '0';
+                        setTimeout(() => obj.element.remove(), 300);
+                    } else if (obj.type === 'obstacle' && !gameState.isJumping && !gameState.isSliding) {
+                        // Hit obstacle - trigger immediate question
+                        fetchAndShowQuestion();
+                        obj.element.remove();
+                        gameState.gameObjects.splice(index, 1);
+                    } else if (obj.type === 'powerup') {
+                        gameState.score += 100;
+                        gameState.speed *= 1.2;
+                        obj.collected = true;
+                        obj.element.style.opacity = '0';
+                        setTimeout(() => obj.element.remove(), 300);
+                    }
+                }
+            });
+        }
+
+        async function fetchAndShowQuestion() {
+            try {
+                if (!sessionId) {
+                    showOfflineQuestion();
+                    return;
+                }
+                
+                const response = await fetch(`${API_BASE}/question`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success && data.question) {
+                    showQuestion(data.question, data.adaptive_info);
+                } else {
+                    showOfflineQuestion();
+                }
+            } catch (error) {
+                console.error('Failed to fetch question:', error);
+                showOfflineQuestion();
+            }
+        }
+
+        function showQuestion(question, adaptiveInfo = null) {
+            gameState.paused = true;
+            gameState.lastQuestionTime = Date.now();
+            gameState.questionStartTime = Date.now(); // Track response time
+            document.getElementById('gameContainer').classList.add('game-paused');
+            
+            // Store current question
+            currentQuestion = question || getOfflineQuestion();
+            
+            // Display question with adaptive information
+            let questionText = currentQuestion.question;
+            if (adaptiveInfo && adaptiveInfo.difficulty) {
+                questionText = `[${adaptiveInfo.difficulty.toUpperCase()}] ${questionText}`;
+            }
+            document.getElementById('questionText').textContent = questionText;
+            
+            // Create options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            currentQuestion.options.forEach((option, index) => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option';
+                optionEl.textContent = option;
+                optionEl.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            // Reset UI
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('continueBtn').style.display = 'none';
+            
+            // Show performance hint if available
+            if (adaptiveInfo && adaptiveInfo.performance_hint) {
+                const hint = document.createElement('div');
+                hint.style.cssText = 'margin-bottom: 15px; padding: 10px; background: rgba(255,215,0,0.2); border-radius: 10px; font-size: 14px;';
+                hint.textContent = adaptiveInfo.performance_hint;
+                document.querySelector('.question-box').insertBefore(hint, document.getElementById('questionText'));
+            }
+            
+            // Show overlay
+            document.getElementById('questionOverlay').classList.add('active');
+        }
+
+        function showOfflineQuestion() {
+            // Fallback offline questions
+            const offlineQuestions = [
+                {
+                    id: 'offline_1',
+                    question: "Which gas do plants absorb during photosynthesis?",
+                    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+                    correct: 1,
+                    explanation: "Plants absorb CO₂ during photosynthesis!"
+                },
+                {
+                    id: 'offline_2',
+                    question: "What is 15 × 12?",
+                    options: ["150", "180", "170", "160"],
+                    correct: 1,
+                    explanation: "15 × 12 = 180"
+                }
+            ];
+            
+            showQuestion(offlineQuestions[Math.floor(Math.random() * offlineQuestions.length)]);
+        }
+
+        function getOfflineQuestion() {
+            const offlineQuestions = [
+                {
+                    id: 'offline_1',
+                    question: "Which gas do plants absorb during photosynthesis?",
+                    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+                    correct: 1,
+                    explanation: "Plants absorb CO₂ during photosynthesis!"
+                }
+            ];
+            return offlineQuestions[0];
+        }
+
+        function selectOption(index) {
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Select current option
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            currentQuestion.selectedAnswer = index;
+        }
+
+        async function submitAnswer() {
+            if (currentQuestion.selectedAnswer === undefined) {
+                alert('Please select an answer first!');
+                return;
+            }
+            
+            const responseTime = Date.now() - (gameState.questionStartTime || Date.now());
+            
+            try {
+                if (sessionId) {
+                    // Submit to backend API
+                    const response = await fetch(`${API_BASE}/answer`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            session_id: sessionId,
+                            question_id: currentQuestion.id,
+                            answer_index: currentQuestion.selectedAnswer,
+                            response_time: responseTime
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        handleAnswerResponse(data);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to submit answer:', error);
+            }
+            
+            // Fallback to offline processing
+            handleOfflineAnswer();
+        }
+
+        function handleAnswerResponse(data) {
+            const feedback = document.getElementById('feedback');
+            
+            // Show correct answer
+            document.querySelectorAll('.option').forEach((opt, index) => {
+                if (index === (currentQuestion.correct_answer || currentQuestion.correct)) {
+                    opt.classList.add('correct');
+                } else if (index === currentQuestion.selectedAnswer && !data.correct) {
+                    opt.classList.add('incorrect');
+                }
+            });
+            
+            // Update feedback with API response
+            if (data.correct) {
+                feedback.textContent = `Correct! ${data.explanation}`;
+                feedback.className = 'feedback correct';
+                
+                if (data.rewards.streak_bonus > 0) {
+                    feedback.textContent += ` 🔥 Streak Bonus: +${data.rewards.streak_bonus}!`;
+                }
+                if (data.rewards.time_bonus > 0) {
+                    feedback.textContent += ` ⚡ Speed Bonus: +${data.rewards.time_bonus}!`;
+                }
+            } else {
+                feedback.textContent = `Incorrect. ${data.explanation}`;
+                if (data.ai_hint) {
+                    feedback.textContent += `\n💡 Hint: ${data.ai_hint}`;
+                }
+                feedback.className = 'feedback incorrect';
+            }
+            
+            // Update game state from API response
+            gameState.score = data.session_stats.total_score;
+            gameState.coins = data.session_stats.total_coins;
+            gameState.streak = data.session_stats.current_streak;
+            gameState.questionsAnswered = data.session_stats.questions_answered;
+            
+            // Apply game effects
+            if (data.game_effects.speed_boost) {
+                gameState.speed *= 1.2;
+                feedback.textContent += ' 🚀 Speed Boost Activated!';
+            }
+            
+            // Update UI
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('coins').textContent = gameState.coins;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('questionsAnswered').textContent = gameState.questionsAnswered;
+            
+            // Hide submit button, show continue
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('continueBtn').style.display = 'inline-block';
+        }
+
+        function handleOfflineAnswer() {
+            const isCorrect = currentQuestion.selectedAnswer === (currentQuestion.correct_answer || currentQuestion.correct);
+            const feedback = document.getElementById('feedback');
+            
+            // Show correct answer
+            document.querySelectorAll('.option').forEach((opt, index) => {
+                if (index === (currentQuestion.correct_answer || currentQuestion.correct)) {
+                    opt.classList.add('correct');
+                } else if (index === currentQuestion.selectedAnswer && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+            
+            // Update feedback
+            if (isCorrect) {
+                feedback.textContent = `Correct! ${currentQuestion.explanation || 'Well done!'}`;
+                feedback.className = 'feedback correct';
+                gameState.score += 200;
+                gameState.coins += 20;
+                gameState.streak++;
+                
+                if (gameState.streak >= 3) {
+                    gameState.score += gameState.streak * 50;
+                    feedback.textContent += ` 🔥 Streak Bonus: +${gameState.streak * 50}!`;
+                }
+            } else {
+                feedback.textContent = `Incorrect. ${currentQuestion.explanation || 'Try again next time!'}`;
+                feedback.className = 'feedback incorrect';
+                gameState.streak = 0;
+            }
+            
+            gameState.questionsAnswered++;
+            
+            // Update UI
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('coins').textContent = gameState.coins;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('questionsAnswered').textContent = gameState.questionsAnswered;
+            
+            // Hide submit button, show continue
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('continueBtn').style.display = 'inline-block';
+        }
+
+        function continueGame() {
+            gameState.paused = false;
+            document.getElementById('gameContainer').classList.remove('game-paused');
+            document.getElementById('questionOverlay').classList.remove('active');
+            currentQuestion = null;
+        }
+
+        // Player controls
+        function jump() {
+            if (!gameState.isJumping && !gameState.paused) {
+                gameState.isJumping = true;
+                document.getElementById('player').classList.add('jumping');
+                setTimeout(() => {
+                    gameState.isJumping = false;
+                    document.getElementById('player').classList.remove('jumping');
+                }, 600);
+            }
+        }
+
+        function slide() {
+            if (!gameState.isSliding && !gameState.paused) {
+                gameState.isSliding = true;
+                document.getElementById('player').classList.add('sliding');
+                setTimeout(() => {
+                    gameState.isSliding = false;
+                    document.getElementById('player').classList.remove('sliding');
+                }, 800);
+            }
+        }
+
+        function moveLeft() {
+            if (gameState.playerPosition > 0 && !gameState.paused) {
+                gameState.playerPosition--;
+                updatePlayerPosition();
+            }
+        }
+
+        function moveRight() {
+            if (gameState.playerPosition < 2 && !gameState.paused) {
+                gameState.playerPosition++;
+                updatePlayerPosition();
+            }
+        }
+
+        function updatePlayerPosition() {
+            const positions = ['25%', '50%', '75%'];
+            document.getElementById('player').style.left = positions[gameState.playerPosition];
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case ' ':
+                case 'w':
+                    e.preventDefault();
+                    jump();
+                    break;
+                case 's':
+                    slide();
+                    break;
+                case 'a':
+                    moveLeft();
+                    break;
+                case 'd':
+                    moveRight();
+                    break;
+            }
+        });
+
+        // Button event listeners
+        document.getElementById('submitBtn').onclick = submitAnswer;
+        document.getElementById('continueBtn').onclick = continueGame;
+
+        // Start the game
+        initGame();
+    </script>
+</body>
+</html>

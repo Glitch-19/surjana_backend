@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Rewards Shop - Learning Adventures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .shop-header {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .shop-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .shop-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .token-display {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 15px 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .token-icon {
+            font-size: 2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+        }
+
+        .shop-navigation {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-tab {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+        }
+
+        .category-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            transform: scale(1.05);
+        }
+
+        .shop-content {
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 2px;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .reward-item {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reward-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 107, 107, 0.1), transparent, rgba(255, 165, 0, 0.1));
+            animation: rotate 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .reward-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #ff6b6b;
+        }
+
+        .item-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .item-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .item-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .item-cost {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .purchase-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .purchase-btn:hover {
+            background: linear-gradient(45deg, #20c997, #28a745);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .purchase-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .out-of-stock {
+            background: #f8f9fa;
+            opacity: 0.7;
+        }
+
+        .stock-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .in-stock {
+            background: #28a745;
+        }
+
+        .cart-summary {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .purchase-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalPop 0.3s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .delivery-form {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            border-color: #ff6b6b;
+            outline: none;
+        }
+
+        .confirm-purchase-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .orders-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 20px;
+        }
+
+        .order-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .leaderboard-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .leaderboard-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #ff6b6b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .shop-title { font-size: 2rem; }
+            .items-grid { grid-template-columns: 1fr; }
+            .shop-content { padding: 20px; }
+            .category-tabs { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="shop-container">
+        <header class="shop-header">
+            <h1 class="shop-title">🏪 Student Rewards Shop</h1>
+            <p class="shop-subtitle">Turn your learning achievements into awesome rewards!</p>
+            <div class="token-display">
+                <span class="token-icon">🪙</span>
+                <span id="tokenCount">Loading...</span>
+                <span>Tokens</span>
+            </div>
+        </header>
+
+        <nav class="shop-navigation">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="stationery">📝 Stationery</button>
+                <button class="category-tab" data-category="books">📚 Books</button>
+                <button class="category-tab" data-category="games">🎮 Games</button>
+                <button class="category-tab" data-category="digital">💻 Digital</button>
+                <button class="category-tab" data-category="orders">📋 My Orders</button>
+                <button class="category-tab" data-category="leaderboard">🏆 Leaderboard</button>
+            </div>
+        </nav>
+
+        <main class="shop-content">
+            <!-- Category sections will be populated by JavaScript -->
+            <div id="loading" style="text-align: center; padding: 50px;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 20px; color: #666;">Loading awesome rewards...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="purchase-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePurchaseModal()">&times;</button>
+            <h2>Complete Your Purchase</h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000;">
+        <div class="success-message">
+            <h3>🎉 Purchase Successful!</h3>
+            <p id="successText"></p>
+        </div>
+    </div>
+
+    <script>
+        let currentStudent = 'student123'; // This would come from user session
+        let studentTokens = 0;
+        let shopCatalog = {};
+        let studentOrders = [];
+
+        // Initialize the shop
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStudentData();
+            setupCategoryTabs();
+        });
+
+        async function loadStudentData() {
+            try {
+                // Load student tokens
+                const tokenResponse = await fetch(`/api/rewards/student/${currentStudent}/tokens`);
+                const tokenData = await tokenResponse.json();
+                
+                if (tokenData.success) {
+                    studentTokens = tokenData.tokens.available_tokens;
+                    updateTokenDisplay();
+                }
+
+                // Load shop catalog
+                const catalogResponse = await fetch('/api/rewards/shop/catalog');
+                const catalogData = await catalogResponse.json();
+                
+                if (catalogData.success) {
+                    shopCatalog = catalogData.catalog;
+                    renderShopContent();
+                }
+
+                // Load student orders
+                const ordersResponse = await fetch(`/api/rewards/student/${currentStudent}/orders`);
+                const ordersData = await ordersResponse.json();
+                
+                if (ordersData.success) {
+                    studentOrders = ordersData.orders;
+                }
+
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error loading shop data:', error);
+                document.getElementById('loading').innerHTML = 
+                    '<p style="color: #dc3545;">Sorry, there was an error loading the shop. Please try again later.</p>';
+            }
+        }
+
+        function updateTokenDisplay() {
+            document.getElementById('tokenCount').textContent = studentTokens;
+        }
+
+        function setupCategoryTabs() {
+            const tabs = document.querySelectorAll('.category-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    const category = tab.dataset.category;
+                    showCategory(category);
+                });
+            });
+        }
+
+        function renderShopContent() {
+            const content = document.querySelector('.shop-content');
+            let html = '';
+
+            // Render each category
+            Object.keys(shopCatalog).forEach(category => {
+                html += `
+                    <div class="category-section ${category === 'stationery' ? 'active' : ''}" id="category-${category}">
+                        <h2 class="category-title">${getCategoryTitle(category)}</h2>
+                        <div class="items-grid">
+                            ${renderCategoryItems(category)}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Add orders section
+            html += `
+                <div class="category-section" id="category-orders">
+                    <h2 class="category-title">📋 My Orders</h2>
+                    <div id="ordersContent">
+                        ${renderOrders()}
+                    </div>
+                </div>
+            `;
+
+            // Add leaderboard section
+            html += `
+                <div class="category-section" id="category-leaderboard">
+                    <h2 class="category-title">🏆 Token Leaderboard</h2>
+                    <div id="leaderboardContent">
+                        <div class="loading-spinner" style="margin: 20px auto;"></div>
+                    </div>
+                </div>
+            `;
+
+            content.innerHTML = html;
+
+            // Load leaderboard data
+            loadLeaderboard();
+        }
+
+        function renderCategoryItems(category) {
+            const items = shopCatalog[category];
+            let html = '';
+
+            Object.keys(items).forEach(itemId => {
+                const item = items[itemId];
+                const canAfford = studentTokens >= item.cost;
+                const isAvailable = item.available && item.stock > 0;
+                
+                html += `
+                    <div class="reward-item ${!isAvailable ? 'out-of-stock' : ''}">
+                        <div class="stock-badge ${isAvailable ? 'in-stock' : ''}">
+                            ${isAvailable ? `${item.stock} left` : 'Out of Stock'}
+                        </div>
+                        <span class="item-icon">${item.image}</span>
+                        <h3 class="item-name">${item.name}</h3>
+                        <p class="item-description">${item.description}</p>
+                        <div class="item-details">
+                            <span>Age: ${item.age_group}</span>
+                            <span>${item.category}</span>
+                        </div>
+                        <div class="item-cost">🪙 ${item.cost} tokens</div>
+                        <button class="purchase-btn" 
+                                ${!canAfford || !isAvailable ? 'disabled' : ''}
+                                onclick="initiatePurchase('${category}', '${itemId}')">
+                            ${!isAvailable ? 'Out of Stock' : 
+                              !canAfford ? `Need ${item.cost - studentTokens} more tokens` : 
+                              'Purchase Now'}
+                        </button>
+                    </div>
+                `;
+            });
+
+            return html;
+        }
+
+        function renderOrders() {
+            if (studentOrders.length === 0) {
+                return '<p style="text-align: center; color: #666; padding: 50px;">No orders yet. Start shopping to see your orders here!</p>';
+            }
+
+            let html = '<div class="orders-section">';
+            studentOrders.reverse().forEach(order => {
+                html += `
+                    <div class="order-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <strong>Order #${order.order_id}</strong>
+                            <span style="color: #28a745; font-weight: bold;">${order.status}</span>
+                        </div>
+                        <p><strong>${order.item.name}</strong> - 🪙 ${order.item.cost} tokens</p>
+                        <p style="color: #666; font-size: 0.9rem;">Ordered: ${new Date(order.timestamp).toLocaleDateString()}</p>
+                        <p style="color: #666; font-size: 0.9rem;">Estimated delivery: ${order.estimated_delivery}</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+
+        async function loadLeaderboard() {
+            try {
+                const response = await fetch('/api/rewards/leaderboard/tokens');
+                const data = await response.json();
+                
+                if (data.success) {
+                    renderLeaderboard(data.leaderboard);
+                }
+            } catch (error) {
+                console.error('Error loading leaderboard:', error);
+                document.getElementById('leaderboardContent').innerHTML = 
+                    '<p style="color: #dc3545; text-align: center;">Error loading leaderboard</p>';
+            }
+        }
+
+        function renderLeaderboard(leaderboard) {
+            let html = '<div class="leaderboard-section">';
+            
+            if (leaderboard.length === 0) {
+                html += '<p style="text-align: center;">No students on leaderboard yet!</p>';
+            } else {
+                leaderboard.forEach((student, index) => {
+                    const rank = index + 1;
+                    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
+                    
+                    html += `
+                        <div class="leaderboard-item">
+                            <span>${medal} Student ${student.student_id.slice(-4)}</span>
+                            <span>🪙 ${student.total_tokens} tokens</span>
+                        </div>
+                    `;
+                });
+            }
+            
+            html += '</div>';
+            document.getElementById('leaderboardContent').innerHTML = html;
+        }
+
+        function showCategory(category) {
+            // Hide all sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(`category-${category}`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Reload orders if showing orders
+            if (category === 'orders') {
+                document.getElementById('ordersContent').innerHTML = renderOrders();
+            }
+        }
+
+        function getCategoryTitle(category) {
+            const titles = {
+                stationery: '📝 Writing & Art Supplies',
+                books: '📚 Educational Books',
+                games: '🎮 Learning Games & Kits',
+                digital: '💻 Digital Learning Resources'
+            };
+            return titles[category] || category;
+        }
+
+        function initiatePurchase(category, itemId) {
+            const item = shopCatalog[category][itemId];
+            
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span style="font-size: 4rem;">${item.image}</span>
+                    <h3>${item.name}</h3>
+                    <p style="color: #666;">${item.description}</p>
+                    <div style="font-size: 1.5rem; color: #ff6b6b; margin: 15px 0;">
+                        🪙 ${item.cost} tokens
+                    </div>
+                </div>
+                
+                <form id="purchaseForm" class="delivery-form">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" class="form-input" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">School Address *</label>
+                        <textarea class="form-input" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Special Instructions</label>
+                        <textarea class="form-input" name="instructions" rows="2" placeholder="Any special delivery instructions..."></textarea>
+                    </div>
+                </form>
+                
+                <button class="confirm-purchase-btn" onclick="completePurchase('${category}', '${itemId}')">
+                    Confirm Purchase - 🪙 ${item.cost} tokens
+                </button>
+            `;
+            
+            document.getElementById('purchaseModal').style.display = 'flex';
+        }
+
+        async function completePurchase(category, itemId) {
+            const form = document.getElementById('purchaseForm');
+            const formData = new FormData(form);
+            
+            const deliveryInfo = {
+                fullName: formData.get('fullName'),
+                address: formData.get('address'),
+                phone: formData.get('phone'),
+                instructions: formData.get('instructions')
+            };
+            
+            if (!deliveryInfo.fullName || !deliveryInfo.address) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/rewards/shop/purchase', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        student_id: currentStudent,
+                        item_id: itemId,
+                        category: category,
+                        delivery_info: deliveryInfo
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Update token display
+                    studentTokens = data.remaining_tokens;
+                    updateTokenDisplay();
+                    
+                    // Add new order to list
+                    studentOrders.push(data.order);
+                    
+                    // Close modal
+                    closePurchaseModal();
+                    
+                    // Show success message
+                    showSuccessMessage(data.message);
+                    
+                    // Reload shop to update stock
+                    setTimeout(() => {
+                        loadStudentData();
+                    }, 2000);
+                    
+                } else {
+                    alert(data.error || 'Purchase failed. Please try again.');
+                }
+                
+            } catch (error) {
+                console.error('Purchase error:', error);
+                alert('Purchase failed. Please check your connection and try again.');
+            }
+        }
+
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+
+        function showSuccessMessage(message) {
+            document.getElementById('successText').textContent = message;
+            document.getElementById('successMessage').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 4000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('purchaseModal');
+            if (event.target === modal) {
+                closePurchaseModal();
+            }
+        }
+
+        // Demo function to add tokens for testing
+        function addTestTokens() {
+            fetch('/api/rewards/tokens/earn', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    student_id: currentStudent,
+                    achievement_type: 'quiz_perfect',
+                    subject: 'Math',
+                    score: 100
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    studentTokens = data.available_tokens;
+                    updateTokenDisplay();
+                    renderShopContent();
+                    alert(`Earned ${data.tokens_earned} tokens! 🎉`);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Add test button for demo purposes
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.shop-header');
+            const testButton = document.createElement('button');
+            testButton.textContent = 'Add Test Tokens (Demo)';
+            testButton.style.cssText = `
+                margin-top: 15px;
+                padding: 10px 20px;
+                background: rgba(255,255,255,0.2);
+                color: white;
+                border: 2px solid rgba(255,255,255,0.3);
+                border-radius: 20px;
+                cursor: pointer;
+                font-weight: bold;
+            `;
+            testButton.onclick = addTestTokens;
+            header.appendChild(testButton);
+        });
+    </script>
+</body>
+</html>
