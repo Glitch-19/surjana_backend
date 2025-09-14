@@ -155,3 +155,145 @@ Non-living things do not have these characteristics. For example, a car can move
 2025-09-14 07:52:52,419 - __main__ - INFO - Mode: rag_with_llm
 2025-09-14 07:52:52,419 - __main__ - INFO - Sources: 5 documents
 2025-09-14 07:52:52,419 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 10:45:07,359 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 10:45:07,361 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 10:45:08,444 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 10:45:08,444 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 10:45:08,452 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 10:45:08,561 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 10:45:08,576 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 10:45:08,593 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 10:45:08,594 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 10:45:08,594 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 10:45:08,594 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 10:45:23,419 - __main__ - INFO - User question: what is photosynthesis?
+2025-09-14 10:45:23,419 - __main__ - INFO - Processing question: 'what is photosynthesis?'
+2025-09-14 10:45:25,234 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 10:45:27,699 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 10:45:27,699 - __main__ - INFO - Question processed: what is photosynthesis?
+2025-09-14 10:45:27,699 - __main__ - INFO - Answer: The provided text doesn't directly define photosynthesis. However, it does say that "Sunlight helps plants prepare food". So, we can infer that photosynthesis is the process by which plants use sunlight to make their own food.
+2025-09-14 10:45:27,699 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 10:45:27,699 - __main__ - INFO - Sources: 5 documents
+2025-09-14 10:45:27,700 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 10:51:33,081 - __main__ - INFO - User question: goodbye
+2025-09-14 10:51:33,082 - __main__ - INFO - Processing question: 'goodbye'
+2025-09-14 10:51:34,799 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 10:51:37,123 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 10:51:37,123 - __main__ - INFO - Question processed: goodbye
+2025-09-14 10:51:37,123 - __main__ - INFO - Answer: The book ends with words of encouragement, motivating learners to continue their educational journey and ignite their curiosity for further learning. It encourages students to keep observing the world, asking questions, and experimenting, because even the most groundbreaking discoveries often begin with a simple "Why?".
+2025-09-14 10:51:37,123 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 10:51:37,123 - __main__ - INFO - Sources: 5 documents
+2025-09-14 10:51:37,123 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 10:51:49,336 - __main__ - INFO - User question: what is photosynthesis?
+2025-09-14 10:51:49,336 - __main__ - INFO - Processing question: 'what is photosynthesis?'
+2025-09-14 10:51:49,905 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 10:51:51,073 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 10:51:51,073 - __main__ - INFO - Question processed: what is photosynthesis?
+2025-09-14 10:51:51,074 - __main__ - INFO - Answer: The provided text doesn't directly define photosynthesis. However, it does say that "Sunlight helps plants prepare food" and "Plants get energy from the Sun and produce food."
+
+So, we can infer that photosynthesis is the process where plants use sunlight to make their own food.
+2025-09-14 10:51:51,074 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 10:51:51,074 - __main__ - INFO - Sources: 5 documents
+2025-09-14 10:51:51,074 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 10:52:01,432 - __main__ - INFO - Session interrupted by user
+2025-09-14 10:52:08,927 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 10:52:08,928 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 10:52:09,900 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 10:52:09,900 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 10:52:09,902 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 10:52:10,005 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 10:52:10,015 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 10:52:10,028 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 10:52:10,028 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 10:52:10,028 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 10:52:10,028 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 10:53:54,763 - __main__ - INFO - User question: What Sets the Living Apart from the
+2025-09-14 10:53:54,763 - __main__ - INFO - Processing question: 'What Sets the Living Apart from the'
+2025-09-14 10:53:55,320 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 10:53:57,141 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 10:53:57,141 - __main__ - INFO - Question processed: What Sets the Living Apart from the
+2025-09-14 10:53:57,141 - __main__ - INFO - Answer: Okay, I'm ready to help you understand what makes living things different from non-living things! Let's break it down.
+
+**Key Point:** Living things have special characteristics that non-living things don't.
+
+**Mini-Explanation:** To tell the difference, think about what YOU can do! You can move, grow, eat, and have babies. Cars can move, but they don't grow or eat, so they are non-living.
+
+**Real-Life Connection:** Compare yourself to your toys. You need food and water, but your toys don't!
+
+**Memory Tip:** Living things = MGERRS (Movement, Growth, Eating, Reproduction, Respiration, Sensitivity)
+2025-09-14 10:53:57,141 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 10:53:57,141 - __main__ - INFO - Sources: 5 documents
+2025-09-14 10:53:57,141 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 10:59:47,538 - __main__ - INFO - User ended session
+2025-09-14 10:59:54,757 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 10:59:54,758 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 10:59:55,737 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 10:59:55,737 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 10:59:55,739 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 10:59:55,844 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 10:59:55,855 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 10:59:55,867 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 10:59:55,868 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 10:59:55,868 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 10:59:55,868 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 11:00:17,692 - __main__ - INFO - User question: What Sets the Living Apart from the non-living things?
+2025-09-14 11:00:17,692 - __main__ - INFO - Processing question: 'What Sets the Living Apart from the non-living things?'
+2025-09-14 11:00:18,332 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 11:00:21,695 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 11:00:21,695 - __main__ - INFO - Question processed: What Sets the Living Apart from the non-living things?
+2025-09-14 11:00:21,695 - __main__ - INFO - Answer: Okay, let's explore what makes living things different from non-living things!
+
+**1. Key Point:** Living things do certain things that non-living things can't.
+
+**2. Mini-Explanation:**
+*   Living things can move, even if it's just a plant growing towards the sun.
+*   They need food to live and grow.
+*   Living things can also reproduce, making more of their own kind.
+
+**3. Real-Life Connection:** You eat food, grow taller, and can move around – a rock can't do any of those things!
+
+**4. Memory Tip:** "Living things **M**ove, **E**at, and **R**eproduce" (MER).
+
+Okay, quick quiz! Which of these is NOT a characteristic of living things:
+a) Growth
+b) Movement
+c) Being shiny
+d) Reproduction
+2025-09-14 11:00:21,695 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 11:00:21,695 - __main__ - INFO - Sources: 5 documents
+2025-09-14 11:00:21,695 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 11:01:54,626 - __main__ - INFO - User ended session
+2025-09-14 11:02:05,835 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 11:02:05,836 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 11:02:06,807 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 11:02:06,807 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 11:02:06,809 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 11:02:06,912 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 11:02:06,922 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 11:02:06,935 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 11:02:06,935 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 11:02:06,935 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 11:02:06,935 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 11:02:10,476 - __main__ - INFO - User question: What Sets the Living Apart from the non-living things?
+2025-09-14 11:02:10,476 - __main__ - INFO - Processing question: 'What Sets the Living Apart from the non-living things?'
+2025-09-14 11:02:11,014 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 11:02:13,165 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 11:02:13,165 - __main__ - INFO - Question processed: What Sets the Living Apart from the non-living things?
+2025-09-14 11:02:13,165 - __main__ - INFO - Answer: Okay, let's explore what makes living things different from non-living things!
+
+**1. Key Point:** Living things do certain things that non-living things cannot.
+
+**2. Mini-Explanation:**
+*   Living things can move, even if it's just a plant turning towards the sun.
+*   They need food to grow and stay alive.
+*   Living things can also make more of themselves (reproduce!).
+
+**3. Real-Life Connection:** You eat food, you grow taller, and one day you might have kids – a rock can't do any of that!
+
+**4. Memory Tip:** Living things **M**ove, **E**at, and **R**eproduce (**MER**).
+
+Now, for a quick quiz: Can a car be considered a living thing because it moves? Why or why not?
+2025-09-14 11:02:13,165 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 11:02:13,165 - __main__ - INFO - Sources: 5 documents
+2025-09-14 11:02:13,165 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 11:04:53,779 - __main__ - INFO - User ended session

@@ -1,0 +1,17 @@
+2025-09-14 11:06:24,836 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 11:06:25,826 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 11:06:25,826 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 11:06:25,828 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 11:06:25,936 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 11:06:25,946 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 11:06:25,960 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 11:06:25,960 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 11:06:25,960 - __main__ - INFO - Adaptive RAG system initialized successfully
+2025-09-14 11:07:25,091 - __main__ - INFO - User question: What Sets the Living Apart from the
+2025-09-14 11:07:25,091 - __main__ - INFO - Starting adaptive learning session for: 'What Sets the Living Apart from the'
+2025-09-14 11:07:25,091 - __main__ - INFO - Processing question: 'What Sets the Living Apart from the'
+2025-09-14 11:07:25,096 - __main__ - ERROR - Error embedding query 'What Sets the Living Apart from the': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 11:07:27,842 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 11:07:29,029 - __main__ - INFO - Session 8701 started for question: What Sets the Living Apart from the
+2025-09-14 11:08:17,072 - __main__ - INFO - Quiz completed - Student: C, Correct: C, Result: True
+2025-09-14 11:09:16,883 - __main__ - INFO - User ended session

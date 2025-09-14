@@ -5,7 +5,142 @@ and generates answers using Google's Gemini LLM and Gemini embeddings.
 """
 import os
 import logging
-from typing import List, Dict, Any, Optional
+from ty    def generate_quiz_question(self, topic: str, context: str) -> Dict[str, Any]:
+        """
+        Generate a quiz question based on the topic and context to assess understanding.
+        
+        Args:
+            topic: The main topic being discussed
+            context: The context from which to generate the quiz
+            
+        Returns:
+            Dictionary containing quiz question and correct answer
+        """
+        quiz_prompt = f"""Based on this content about {topic}:
+
+{context}
+
+Generate a simple multiple-choice question to test basic understanding of the key concept. Make it appropriate for Class 6 students.
+
+Format your response as:
+QUESTION: [Your question here]
+A) [Option A]
+B) [Option B] 
+C) [Option C]
+D) [Option D]
+CORRECT: [Letter of correct answer]
+EXPLANATION: [Why this answer is correct in 1-2 sentences]
+"""
+
+        try:
+            if self.llm:
+                response = self.llm.invoke(quiz_prompt)
+                return {"quiz_content": response.content, "topic": topic}
+            else:
+                return {"quiz_content": "Quiz generation requires LLM connection", "topic": topic}
+        except Exception as e:
+            logger.error(f"Error generating quiz: {e}")
+            return {"quiz_content": f"Could not generate quiz: {e}", "topic": topic}
+
+    def evaluate_quiz_response(self, student_answer: str, correct_answer: str, topic: str, context: str) -> Dict[str, Any]:
+        """
+        Evaluate student's quiz response and provide adaptive feedback.
+        
+        Args:
+            student_answer: Student's answer choice
+            correct_answer: The correct answer
+            topic: The topic being tested
+            context: Original context for re-explanation
+            
+        Returns:
+            Dictionary with evaluation results and adaptive feedback
+        """
+        is_correct = student_answer.upper().strip() == correct_answer.upper().strip()
+        
+        if is_correct:
+            feedback_prompt = f"""The student correctly answered a quiz about {topic}. 
+            
+Provide encouraging feedback and suggest the next learning step. Keep it brief and motivating."""
+        else:
+            feedback_prompt = f"""The student incorrectly answered a quiz about {topic}. They chose {student_answer} but the correct answer was {correct_answer}.
+
+Based on this context:
+{context}
+
+Provide a re-explanation using a DIFFERENT approach:
+- Use a different analogy or example
+- Break it down differently 
+- Focus on the part they misunderstood
+- Keep it simple and encouraging for Class 6 students
+
+Start with "Let me explain this differently..." """
+
+        try:
+            if self.llm:
+                feedback = self.llm.invoke(feedback_prompt)
+                return {
+                    "is_correct": is_correct,
+                    "feedback": feedback.content,
+                    "needs_reinforcement": not is_correct
+                }
+            else:
+                return {
+                    "is_correct": is_correct, 
+                    "feedback": "Great job!" if is_correct else "Let's try again with a different explanation.",
+                    "needs_reinforcement": not is_correct
+                }
+        except Exception as e:
+            logger.error(f"Error generating feedback: {e}")
+            return {
+                "is_correct": is_correct,
+                "feedback": "Unable to generate feedback at this time.",
+                "needs_reinforcement": not is_correct
+            }
+
+    def adaptive_learning_session(self, question: str) -> Dict[str, Any]:
+        """
+        Conduct a full adaptive learning session with quiz and feedback.
+        
+        Args:
+            question: Initial student question
+            
+        Returns:
+            Dictionary containing the full learning session results
+        """
+        logger.info(f"Starting adaptive learning session for: '{question}'")
+        
+        # Step 1: Get initial answer
+        initial_response = self.answer_query(question)
+        
+        # Step 2: Generate quiz based on the content
+        if initial_response.get('source_documents'):
+            context = "\n".join([doc['content'][:500] for doc in initial_response['source_documents'][:2]])
+            quiz_data = self.generate_quiz_question(question, context)
+        else:
+            quiz_data = {"quiz_content": "No quiz available", "topic": question}
+        
+        return {
+            "initial_answer": initial_response,
+            "quiz": quiz_data,
+            "session_id": f"session_{hash(question) % 10000}"
+        }
+
+    def answer_query(self, question: str) -> Dict[str, Any]:
+        """
+        Answer a question using the RAG pipeline.
+        
+        Args:
+            question: The question to answer
+            
+        Returns:
+            Dictionary containing answer and metadata
+        """
+        logger.info(f"Processing question: '{question}'")
+        
+        try:
+            if self.qa_chain and self.llm:
+                # Use full RAG pipeline with LLM
+                result = self.qa_chain.invoke({"query": question}), Dict, Any, Optional
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -161,23 +296,33 @@ class RAGQueryEngine:
         """Setup the retrieval chain with custom prompt template."""
         
         # Create custom prompt template
-        template = """You are an AI assistant specializing in NCERT Class 6 Science education. 
-Use the following pieces of context from the NCERT Science textbook to answer the question. 
-If you don't know the answer based on the context, just say that you don't know.
+        template = """You are an adaptive learning AI that specializes in breaking down complex study materials into bite-sized, digestible chunks for Class 6 Science students.
 
-Context:
+Your mission: Transform overwhelming content into engaging, manageable learning pieces that boost retention and keep students motivated.
+
+Context from NCERT Science:
 {context}
 
-Question: {question}
+Student Question: {question}
 
-Instructions:
-1. Provide accurate, educational answers suitable for Class 6 students
-2. Use simple, clear language that students can understand
-3. Include relevant scientific concepts from the context
-4. If possible, provide examples to help explain concepts
-5. Base your answer primarily on the provided context
+LEARNING APPROACH:
+🎯 Break It Down: Divide complex concepts into 2-3 simple, connected ideas
+📝 Bite-Sized Format: Use short paragraphs, bullet points, or numbered steps
+🧠 Memory Boosters: Include easy-to-remember keywords or phrases
+⚡ Quick Wins: Highlight the most important point first for immediate understanding
+🔄 Build Connections: Link new concepts to familiar everyday examples
 
-Answer:"""
+RESPONSE STRUCTURE:
+1. **Key Point** (1 sentence): The main idea in simple terms
+2. **Mini-Explanation** (2-3 sentences): Break down the concept step-by-step  
+3. **Real-Life Connection** (1 sentence): Connect to student's daily experience
+4. **Memory Tip** (1 phrase): A simple way to remember this concept
+
+Keep responses concise but complete. If the context doesn't contain enough information, say "I need more information from your textbook to give you the complete answer."
+
+Digestible Answer:
+also ask a counter quiz whether the student understood the concept. if the student answers wrong, explain the concept again in a different way.
+"""
 
         self.prompt = PromptTemplate(
             template=template,
@@ -233,7 +378,7 @@ Answer:"""
         try:
             if self.qa_chain and self.llm:
                 # Use full RAG pipeline with LLM
-                result = self.qa_chain({"query": question})
+                result = self.qa_chain.invoke({"query": question})
                 
                 response = {
                     "question": question,
@@ -403,7 +548,7 @@ def main():
                 print("-" * 50)
                 print(result['answer'])
                 print("-" * 50)
-                print(f"📋 Sources: {len(result['source_documents'])} relevant documents found")
+                print(f"📋 Sources: {len(result['source_documents'])} relevant documents found from NCERT Science textbook")
                 
             except KeyboardInterrupt:
                 print("\n\n👋 Session interrupted. Goodbye!")
