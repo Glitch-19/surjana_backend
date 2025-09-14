@@ -1,0 +1,157 @@
+2025-09-14 07:45:08,558 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 07:45:08,560 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 07:45:11,233 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 07:45:11,234 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 07:45:11,239 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 07:45:11,415 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 07:45:11,473 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 07:45:11,518 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 07:45:11,519 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 07:45:11,521 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'gemini-pro', 'mode': 'rag_with_llm'}
+2025-09-14 07:45:11,521 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'gemini-pro', 'mode': 'rag_with_llm'}
+2025-09-14 07:45:11,521 - __main__ - INFO - Processing sample questions...
+2025-09-14 07:45:11,522 - __main__ - INFO - 
+==================================================
+2025-09-14 07:45:11,522 - __main__ - INFO - Question: What is photosynthesis?
+2025-09-14 07:45:11,522 - __main__ - INFO - Processing question: 'What is photosynthesis?'
+2025-09-14 07:45:13,441 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:45:13,866 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised NotFound: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods..
+2025-09-14 07:45:16,184 - __main__ - ERROR - Error answering question: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:16,185 - __main__ - ERROR - Error processing question 'What is photosynthesis?': 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:16,185 - __main__ - INFO - 
+==================================================
+2025-09-14 07:45:16,186 - __main__ - INFO - Question: How do plants make their food?
+2025-09-14 07:45:16,186 - __main__ - INFO - Processing question: 'How do plants make their food?'
+2025-09-14 07:45:16,650 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:45:17,404 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised NotFound: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods..
+2025-09-14 07:45:19,725 - __main__ - ERROR - Error answering question: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:19,725 - __main__ - ERROR - Error processing question 'How do plants make their food?': 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:19,725 - __main__ - INFO - 
+==================================================
+2025-09-14 07:45:19,726 - __main__ - INFO - Question: What are the parts of a plant?
+2025-09-14 07:45:19,726 - __main__ - INFO - Processing question: 'What are the parts of a plant?'
+2025-09-14 07:45:20,294 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:45:21,009 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised NotFound: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods..
+2025-09-14 07:45:23,365 - __main__ - ERROR - Error answering question: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:23,366 - __main__ - ERROR - Error processing question 'What are the parts of a plant?': 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:23,366 - __main__ - INFO - 
+==================================================
+2025-09-14 07:45:23,366 - __main__ - INFO - Question: Explain the water cycle
+2025-09-14 07:45:23,367 - __main__ - INFO - Processing question: 'Explain the water cycle'
+2025-09-14 07:45:23,878 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:45:24,595 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised NotFound: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods..
+2025-09-14 07:45:26,949 - __main__ - ERROR - Error answering question: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:26,950 - __main__ - ERROR - Error processing question 'Explain the water cycle': 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:26,950 - __main__ - INFO - 
+==================================================
+2025-09-14 07:45:26,951 - __main__ - INFO - Question: What is the difference between living and non-living things?
+2025-09-14 07:45:26,951 - __main__ - INFO - Processing question: 'What is the difference between living and non-living things?'
+2025-09-14 07:45:27,461 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:45:28,145 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised NotFound: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods..
+2025-09-14 07:45:30,462 - __main__ - ERROR - Error answering question: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:30,462 - __main__ - ERROR - Error processing question 'What is the difference between living and non-living things?': 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-09-14 07:45:30,463 - __main__ - INFO - 
+RAG Query Engine demonstration completed!
+2025-09-14 07:47:34,280 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 07:47:34,282 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 07:47:36,787 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 07:47:36,788 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 07:47:36,793 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 07:47:36,965 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 07:47:36,988 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 07:47:37,020 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 07:47:37,023 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 07:47:37,024 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'gemini-pro', 'mode': 'rag_with_llm'}
+2025-09-14 07:47:37,024 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'gemini-pro', 'mode': 'rag_with_llm'}
+2025-09-14 07:47:37,025 - __main__ - INFO - Processing sample questions...
+2025-09-14 07:47:37,025 - __main__ - INFO - 
+==================================================
+2025-09-14 07:47:37,026 - __main__ - INFO - Question: What is photosynthesis?
+2025-09-14 07:47:37,026 - __main__ - INFO - Processing question: 'What is photosynthesis?'
+2025-09-14 07:47:38,805 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:47:41,202 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:47:41,203 - __main__ - INFO - Answer: The provided text doesn't directly define photosynthesis. However, it does say that sunlight helps plants prepare food. So, we can infer that photosynthesis is the process by which plants use sunlight...
+2025-09-14 07:47:41,203 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:47:41,204 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:47:41,204 - __main__ - INFO - 
+==================================================
+2025-09-14 07:47:41,204 - __main__ - INFO - Question: How do plants make their food?
+2025-09-14 07:47:41,204 - __main__ - INFO - Processing question: 'How do plants make their food?'
+2025-09-14 07:47:41,717 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:47:42,837 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:47:42,838 - __main__ - INFO - Answer: Plants make their food using sunlight. They take energy from the Sun, and this energy helps them to produce food....
+2025-09-14 07:47:42,838 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:47:42,839 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:47:42,839 - __main__ - INFO - 
+==================================================
+2025-09-14 07:47:42,839 - __main__ - INFO - Question: What are the parts of a plant?
+2025-09-14 07:47:42,840 - __main__ - INFO - Processing question: 'What are the parts of a plant?'
+2025-09-14 07:47:43,359 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:47:44,271 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:47:44,272 - __main__ - INFO - Answer: I am sorry, but the provided text does not contain information about the different parts of a plant. Therefore, I cannot answer your question....
+2025-09-14 07:47:44,274 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:47:44,274 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:47:44,275 - __main__ - INFO - 
+==================================================
+2025-09-14 07:47:44,275 - __main__ - INFO - Question: Explain the water cycle
+2025-09-14 07:47:44,275 - __main__ - INFO - Processing question: 'Explain the water cycle'
+2025-09-14 07:47:44,783 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:47:46,833 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:47:46,833 - __main__ - INFO - Answer: The water cycle is like a big circle that water travels through between the Earth and the atmosphere!
+
+1.  **Evaporation:** It starts when water from the ocean and the Earth's surface turns into vapor...
+2025-09-14 07:47:46,834 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:47:46,834 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:47:46,835 - __main__ - INFO - 
+==================================================
+2025-09-14 07:47:46,835 - __main__ - INFO - Question: What is the difference between living and non-living things?
+2025-09-14 07:47:46,835 - __main__ - INFO - Processing question: 'What is the difference between living and non-living things?'
+2025-09-14 07:47:47,342 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:47:50,629 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:47:50,630 - __main__ - INFO - Answer: Living things and non-living things are different in many ways. Living things share some common characteristics that non-living things don't have. Here are some of them:
+
+*   **Movement:** Living thin...
+2025-09-14 07:47:50,630 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:47:50,630 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:47:50,631 - __main__ - INFO - 
+RAG Query Engine demonstration completed!
+2025-09-14 07:52:08,850 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 07:52:08,851 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 07:52:11,339 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 07:52:11,339 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 07:52:11,345 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 07:52:11,517 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 07:52:11,541 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 07:52:11,573 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 07:52:11,574 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 07:52:11,575 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 07:52:11,575 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 07:52:23,676 - __main__ - INFO - User question: What is photosynthesis
+2025-09-14 07:52:23,676 - __main__ - INFO - Processing question: 'What is photosynthesis'
+2025-09-14 07:52:25,467 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:52:27,932 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:52:27,932 - __main__ - INFO - Question processed: What is photosynthesis
+2025-09-14 07:52:27,933 - __main__ - INFO - Answer: I am sorry, but the provided text does not contain information about photosynthesis.
+2025-09-14 07:52:27,933 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:52:27,933 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:52:27,933 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 07:52:48,380 - __main__ - INFO - User question: What is the difference between living and non living
+2025-09-14 07:52:48,380 - __main__ - INFO - Processing question: 'What is the difference between living and non living'
+2025-09-14 07:52:50,248 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 07:52:52,419 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 07:52:52,419 - __main__ - INFO - Question processed: What is the difference between living and non living
+2025-09-14 07:52:52,419 - __main__ - INFO - Answer: Living things and non-living things are different in many ways. Living things share common characteristics such as:
+
+*   **Movement:** They can move on their own.
+*   **Need for food:** They need food for energy and growth.
+*   **Growth:** They grow over time.
+*   **Respiration:** They breathe.
+*   **Reproduction:** They can produce new ones of their own kind.
+*   **Excretion:** They get rid of waste.
+*   **Response to stimuli:** They react to changes around them (like a touch-me-not plant closing its leaves when touched).
+*   **Death:** They eventually die.
+
+Non-living things do not have these characteristics. For example, a car can move, but it doesn't grow, eat, breathe, or reproduce. A pencil cannot do any of these things. If something doesn't show these characteristics, it is non-living.
+2025-09-14 07:52:52,419 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 07:52:52,419 - __main__ - INFO - Sources: 5 documents
+2025-09-14 07:52:52,419 - __main__ - INFO - --------------------------------------------------------------------------------

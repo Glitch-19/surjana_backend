@@ -1,0 +1,36 @@
+2025-09-14 07:11:29,984 - INFO - ============================================================
+2025-09-14 07:11:29,985 - INFO - VECTOR RAG SYSTEM STARTUP
+2025-09-14 07:11:29,985 - INFO - ============================================================
+2025-09-14 07:11:29,986 - INFO - STEP 1: System initialization
+2025-09-14 07:11:29,986 - INFO - INIT: Starting Vector RAG System
+2025-09-14 07:11:29,988 - INFO - INIT: Vector RAG system initialized
+2025-09-14 07:11:29,988 - INFO - STEP 2: Loading vector database
+2025-09-14 07:11:29,988 - INFO - STEP 2: Trying database: C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_ncert_science
+2025-09-14 07:11:30,000 - INFO - DB_LOAD: Loading vector database from C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_ncert_science
+2025-09-14 07:11:30,011 - INFO - DB_LOAD: Found tables: ['migrations', 'acquire_write', 'collection_metadata', 'segment_metadata', 'tenants', 'databases', 'collections', 'maintenance_log', 'segments', 'embeddings', 'embedding_metadata', 'max_seq_id', 'embedding_fulltext_search', 'embedding_fulltext_search_data', 'embedding_fulltext_search_idx', 'embedding_fulltext_search_content', 'embedding_fulltext_search_docsize', 'embedding_fulltext_search_config', 'embeddings_queue', 'embeddings_queue_config']
+2025-09-14 07:11:30,012 - INFO - DB_LOAD: Found 0 embeddings
+2025-09-14 07:11:30,014 - INFO - DB_LOAD: Found 0 collections
+2025-09-14 07:11:30,015 - INFO - DB_LOAD: Table 'segments' has 2 records
+2025-09-14 07:11:30,015 - INFO - DB_LOAD: Sample from segments: 2 rows
+2025-09-14 07:11:30,016 - INFO - DB_LOAD: Table 'collections' has 1 records
+2025-09-14 07:11:30,016 - INFO - DB_LOAD: Sample from collections: 1 rows
+2025-09-14 07:11:30,017 - WARNING - DB_LOAD: Could not extract documents: no such column: s.document
+2025-09-14 07:11:30,017 - WARNING - DB_LOAD: No documents found in vector database
+2025-09-14 07:11:30,019 - WARNING - STEP 2: Failed to load database from C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_ncert_science
+2025-09-14 07:11:30,019 - INFO - STEP 2: Trying database: C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_db_demo
+2025-09-14 07:11:30,020 - INFO - DB_LOAD: Loading vector database from C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_db_demo
+2025-09-14 07:11:30,023 - INFO - DB_LOAD: Found tables: ['migrations', 'acquire_write', 'collection_metadata', 'segment_metadata', 'tenants', 'databases', 'collections', 'maintenance_log', 'segments', 'embeddings', 'embedding_metadata', 'max_seq_id', 'embedding_fulltext_search', 'embedding_fulltext_search_data', 'embedding_fulltext_search_idx', 'embedding_fulltext_search_content', 'embedding_fulltext_search_docsize', 'embedding_fulltext_search_config', 'embeddings_queue', 'embeddings_queue_config']
+2025-09-14 07:11:30,024 - INFO - DB_LOAD: Found 0 embeddings
+2025-09-14 07:11:30,024 - INFO - DB_LOAD: Found 0 collections
+2025-09-14 07:11:30,026 - INFO - DB_LOAD: Table 'segments' has 2 records
+2025-09-14 07:11:30,026 - INFO - DB_LOAD: Sample from segments: 2 rows
+2025-09-14 07:11:30,027 - INFO - DB_LOAD: Table 'collections' has 1 records
+2025-09-14 07:11:30,028 - INFO - DB_LOAD: Sample from collections: 1 rows
+2025-09-14 07:11:30,028 - WARNING - DB_LOAD: Could not extract documents: no such column: s.document
+2025-09-14 07:11:30,029 - WARNING - DB_LOAD: No documents found in vector database
+2025-09-14 07:11:30,029 - WARNING - STEP 2: Failed to load database from C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_db_demo
+2025-09-14 07:11:30,030 - INFO - STEP 2: Trying database: C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_db
+2025-09-14 07:11:30,030 - INFO - STEP 2: Database not found: C:\Users\91885\OneDrive\Desktop\surjana\rag\chroma_db
+2025-09-14 07:11:30,030 - ERROR - STEP 2: No vector database could be loaded
+2025-09-14 07:11:30,033 - INFO - SHUTDOWN: Vector RAG system execution completed
+2025-09-14 07:11:30,033 - INFO - ============================================================

@@ -1,0 +1,120 @@
+2025-09-14 07:13:05,387 - INFO - ============================================================
+2025-09-14 07:13:05,388 - INFO - TEXT RAG SYSTEM STARTUP
+2025-09-14 07:13:05,388 - INFO - ============================================================
+2025-09-14 07:13:05,388 - INFO - STEP 1: System initialization
+2025-09-14 07:13:05,388 - INFO - INIT: Starting Text RAG System
+2025-09-14 07:13:05,390 - INFO - INIT: Text RAG system initialized
+2025-09-14 07:13:05,390 - INFO - STEP 2: Loading NCERT text file
+2025-09-14 07:13:05,390 - INFO - FILE_LOAD: Loading text file from C:\Users\91885\OneDrive\Desktop\surjana\rag\ncert_class6_science.txt
+2025-09-14 07:13:05,396 - INFO - FILE_LOAD: Loaded 420,037 characters from text file
+2025-09-14 07:13:05,400 - INFO - FILE_LOAD: Content preview: Textbook of Science for Grade 6 Curiosity 0 Prelims.indd   1 23/12/2024   16:06:53 Reprint 2025-26 First Edition July 2024 Jyeshtha 1946 Reprint December 2024 Pausha 1946 PD 2200T GS © National Council of Educational  Research and Training, 2024  65.00 Printed on 80 GSM paper with NCERT  watermark P...
+2025-09-14 07:13:05,400 - INFO - STEP 3: Creating text chunks
+2025-09-14 07:13:05,402 - INFO - CHUNK: Creating chunks with size=1000, overlap=200
+2025-09-14 07:13:05,707 - INFO - CHUNK: Created 560 text chunks
+2025-09-14 07:13:05,708 - INFO - CHUNK: Average chunk size: 947 characters
+2025-09-14 07:13:05,709 - INFO - CHUNK: Sample chunk: Textbook of Science for Grade 6 Curiosity 0 Prelims. indd   1 23/12/2024   16:06:53 Reprint 2025-26 First Edition July 2024 Jyeshtha 1946 Reprint Dece...
+2025-09-14 07:13:05,709 - INFO - SUCCESS: Text RAG system ready for queries
+2025-09-14 07:13:05,710 - INFO - DEMO: Running sample questions
+2025-09-14 07:13:05,710 - INFO - DEMO: Question 1/8
+2025-09-14 07:13:05,711 - INFO - ANSWER: Processing question 'What is photosynthesis?'
+2025-09-14 07:13:05,711 - INFO - SEARCH: Searching for 'What is photosynthesis?' in 560 chunks
+2025-09-14 07:13:05,711 - INFO - SEARCH: Using terms: ['what', 'photosynthesis?']
+2025-09-14 07:13:05,719 - INFO - SEARCH: Found 222 matching chunks, returning top 3
+2025-09-14 07:13:05,720 - INFO - SEARCH: Result 1 - Score: 36.0, Matches: ['what(6)']
+2025-09-14 07:13:05,720 - INFO - SEARCH: Result 2 - Score: 30.0, Matches: ['what(5)']
+2025-09-14 07:13:05,720 - INFO - SEARCH: Result 3 - Score: 30.0, Matches: ['what(5)']
+2025-09-14 07:13:05,721 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,721 - INFO - ANSWER: Generated answer (3490 characters)
+2025-09-14 07:13:05,725 - INFO - DEMO: Question 2/8
+2025-09-14 07:13:05,725 - INFO - ANSWER: Processing question 'How do plants make their food?'
+2025-09-14 07:13:05,726 - INFO - SEARCH: Searching for 'How do plants make their food?' in 560 chunks
+2025-09-14 07:13:05,726 - INFO - SEARCH: Using terms: ['how', 'plants', 'make', 'their', 'food?']
+2025-09-14 07:13:05,737 - INFO - SEARCH: Found 446 matching chunks, returning top 3
+2025-09-14 07:13:05,737 - INFO - SEARCH: Result 1 - Score: 118.8, Matches: ['plants(6)', 'their(6)']
+2025-09-14 07:13:05,738 - INFO - SEARCH: Result 2 - Score: 115.2, Matches: ['how(2)', 'plants(8)', 'their(2)']
+2025-09-14 07:13:05,738 - INFO - SEARCH: Result 3 - Score: 113.4, Matches: ['how(2)', 'plants(7)', 'their(3)']
+2025-09-14 07:13:05,738 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,740 - INFO - ANSWER: Generated answer (3486 characters)
+2025-09-14 07:13:05,743 - INFO - DEMO: Question 3/8
+2025-09-14 07:13:05,744 - INFO - ANSWER: Processing question 'What are the parts of a plant?'
+2025-09-14 07:13:05,744 - INFO - SEARCH: Searching for 'What are the parts of a plant?' in 560 chunks
+2025-09-14 07:13:05,745 - INFO - SEARCH: Using terms: ['what', 'are', 'the', 'parts', 'plant?']
+2025-09-14 07:13:05,766 - INFO - SEARCH: Found 559 matching chunks, returning top 3
+2025-09-14 07:13:05,767 - INFO - SEARCH: Result 1 - Score: 174.6, Matches: ['what(1)', 'are(5)', 'the(26)']
+2025-09-14 07:13:05,767 - INFO - SEARCH: Result 2 - Score: 172.8, Matches: ['are(6)', 'the(26)']
+2025-09-14 07:13:05,767 - INFO - SEARCH: Result 3 - Score: 167.4, Matches: ['are(2)', 'the(29)']
+2025-09-14 07:13:05,768 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,768 - INFO - ANSWER: Generated answer (3483 characters)
+2025-09-14 07:13:05,770 - INFO - DEMO: Question 4/8
+2025-09-14 07:13:05,771 - INFO - ANSWER: Processing question 'What do plants need to grow?'
+2025-09-14 07:13:05,771 - INFO - SEARCH: Searching for 'What do plants need to grow?' in 560 chunks
+2025-09-14 07:13:05,771 - INFO - SEARCH: Using terms: ['what', 'plants', 'need', 'grow?']
+2025-09-14 07:13:05,781 - INFO - SEARCH: Found 327 matching chunks, returning top 3
+2025-09-14 07:13:05,781 - INFO - SEARCH: Result 1 - Score: 115.2, Matches: ['what(2)', 'plants(8)', 'need(2)']
+2025-09-14 07:13:05,782 - INFO - SEARCH: Result 2 - Score: 97.2, Matches: ['what(3)', 'plants(7)']
+2025-09-14 07:13:05,782 - INFO - SEARCH: Result 3 - Score: 86.4, Matches: ['what(2)', 'plants(6)', 'need(1)']
+2025-09-14 07:13:05,783 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,783 - INFO - ANSWER: Generated answer (3514 characters)
+2025-09-14 07:13:05,786 - INFO - DEMO: Question 5/8
+2025-09-14 07:13:05,786 - INFO - ANSWER: Processing question 'How do leaves help plants?'
+2025-09-14 07:13:05,788 - INFO - SEARCH: Searching for 'How do leaves help plants?' in 560 chunks
+2025-09-14 07:13:05,788 - INFO - SEARCH: Using terms: ['how', 'leaves', 'help', 'plants?']
+2025-09-14 07:13:05,800 - INFO - SEARCH: Found 349 matching chunks, returning top 3
+2025-09-14 07:13:05,800 - INFO - SEARCH: Result 1 - Score: 70.2, Matches: ['how(1)', 'leaves(6)']
+2025-09-14 07:13:05,801 - INFO - SEARCH: Result 2 - Score: 63.0, Matches: ['leaves(7)']
+2025-09-14 07:13:05,801 - INFO - SEARCH: Result 3 - Score: 59.4, Matches: ['how(1)', 'leaves(5)']
+2025-09-14 07:13:05,801 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,802 - INFO - ANSWER: Generated answer (3486 characters)
+2025-09-14 07:13:05,805 - INFO - DEMO: Question 6/8
+2025-09-14 07:13:05,806 - INFO - ANSWER: Processing question 'What is the function of roots?'
+2025-09-14 07:13:05,807 - INFO - SEARCH: Searching for 'What is the function of roots?' in 560 chunks
+2025-09-14 07:13:05,807 - INFO - SEARCH: Using terms: ['what', 'the', 'function', 'roots?']
+2025-09-14 07:13:05,824 - INFO - SEARCH: Found 557 matching chunks, returning top 3
+2025-09-14 07:13:05,824 - INFO - SEARCH: Result 1 - Score: 147.6, Matches: ['what(1)', 'the(26)']
+2025-09-14 07:13:05,824 - INFO - SEARCH: Result 2 - Score: 140.4, Matches: ['what(3)', 'the(22)']
+2025-09-14 07:13:05,825 - INFO - SEARCH: Result 3 - Score: 138.6, Matches: ['what(2)', 'the(23)']
+2025-09-14 07:13:05,825 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,826 - INFO - ANSWER: Generated answer (3491 characters)
+2025-09-14 07:13:05,828 - INFO - DEMO: Question 7/8
+2025-09-14 07:13:05,829 - INFO - ANSWER: Processing question 'How do plants get water?'
+2025-09-14 07:13:05,830 - INFO - SEARCH: Searching for 'How do plants get water?' in 560 chunks
+2025-09-14 07:13:05,830 - INFO - SEARCH: Using terms: ['how', 'plants', 'get', 'water?']
+2025-09-14 07:13:05,847 - INFO - SEARCH: Found 392 matching chunks, returning top 3
+2025-09-14 07:13:05,848 - INFO - SEARCH: Result 1 - Score: 102.6, Matches: ['how(3)', 'plants(8)']
+2025-09-14 07:13:05,848 - INFO - SEARCH: Result 2 - Score: 97.2, Matches: ['how(4)', 'plants(7)']
+2025-09-14 07:13:05,849 - INFO - SEARCH: Result 3 - Score: 97.2, Matches: ['how(2)', 'plants(8)']
+2025-09-14 07:13:05,849 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,850 - INFO - ANSWER: Generated answer (3462 characters)
+2025-09-14 07:13:05,853 - INFO - DEMO: Question 8/8
+2025-09-14 07:13:05,853 - INFO - ANSWER: Processing question 'What is chlorophyll?'
+2025-09-14 07:13:05,854 - INFO - SEARCH: Searching for 'What is chlorophyll?' in 560 chunks
+2025-09-14 07:13:05,854 - INFO - SEARCH: Using terms: ['what', 'chlorophyll?']
+2025-09-14 07:13:05,860 - INFO - SEARCH: Found 222 matching chunks, returning top 3
+2025-09-14 07:13:05,861 - INFO - SEARCH: Result 1 - Score: 36.0, Matches: ['what(6)']
+2025-09-14 07:13:05,861 - INFO - SEARCH: Result 2 - Score: 30.0, Matches: ['what(5)']
+2025-09-14 07:13:05,861 - INFO - SEARCH: Result 3 - Score: 30.0, Matches: ['what(5)']
+2025-09-14 07:13:05,862 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:05,862 - INFO - ANSWER: Generated answer (3484 characters)
+2025-09-14 07:13:05,867 - INFO - INTERACTIVE: Starting user input mode
+2025-09-14 07:13:19,626 - INFO - INTERACTIVE: User asked 'what is photosynthesis'
+2025-09-14 07:13:19,627 - INFO - ANSWER: Processing question 'what is photosynthesis'
+2025-09-14 07:13:19,627 - INFO - SEARCH: Searching for 'what is photosynthesis' in 560 chunks
+2025-09-14 07:13:19,627 - INFO - SEARCH: Using terms: ['what', 'photosynthesis']
+2025-09-14 07:13:19,636 - INFO - SEARCH: Found 222 matching chunks, returning top 3
+2025-09-14 07:13:19,637 - INFO - SEARCH: Result 1 - Score: 36.0, Matches: ['what(6)']
+2025-09-14 07:13:19,637 - INFO - SEARCH: Result 2 - Score: 30.0, Matches: ['what(5)']
+2025-09-14 07:13:19,638 - INFO - SEARCH: Result 3 - Score: 30.0, Matches: ['what(5)']
+2025-09-14 07:13:19,638 - INFO - ANSWER: Building answer from 3 relevant chunks
+2025-09-14 07:13:19,638 - INFO - ANSWER: Generated answer (3488 characters)
+2025-09-14 07:13:40,515 - INFO - INTERACTIVE: User asked 'photosynthesus'
+2025-09-14 07:13:40,515 - INFO - ANSWER: Processing question 'photosynthesus'
+2025-09-14 07:13:40,516 - INFO - SEARCH: Searching for 'photosynthesus' in 560 chunks
+2025-09-14 07:13:40,516 - INFO - SEARCH: Using terms: ['photosynthesus']
+2025-09-14 07:13:40,522 - INFO - SEARCH: Found 0 matching chunks, returning top 0
+2025-09-14 07:13:40,522 - WARNING - ANSWER: No relevant content found
+2025-09-14 07:13:52,354 - INFO - INTERACTIVE: User asked 'photosynthesis'
+2025-09-14 07:13:52,355 - INFO - ANSWER: Processing question 'photosynthesis'
+2025-09-14 07:13:52,355 - INFO - SEARCH: Searching for 'photosynthesis' in 560 chunks
+2025-09-14 07:13:52,355 - INFO - SEARCH: Using terms: ['photosynthesis']
+2025-09-14 07:13:52,361 - INFO - SEARCH: Found 0 matching chunks, returning top 0
+2025-09-14 07:13:52,362 - WARNING - ANSWER: No relevant content found
