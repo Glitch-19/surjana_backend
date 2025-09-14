@@ -1,0 +1,50 @@
+2025-09-14 11:16:27,045 - __main__ - INFO - Initializing Localized RAG Chatbot
+2025-09-14 11:16:28,059 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 11:16:28,059 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 11:16:28,061 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 11:16:28,171 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 11:16:28,182 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 11:16:28,196 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 11:16:28,197 - __main__ - INFO - Localized retrieval chain setup completed
+2025-09-14 11:19:34,944 - __main__ - INFO - Student profile set: Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:28:02,310 - __main__ - INFO - User question: What are the different Properties of
+2025-09-14 11:28:02,311 - __main__ - INFO - Processing localized query: 'What are the different Properties of' for Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:28:02,315 - __main__ - ERROR - Error embedding query 'What are the different Properties of': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 11:28:02,316 - __main__ - ERROR - Error generating localized response: Missing some input keys: {'student_context'}
+2025-09-14 11:28:02,317 - __main__ - INFO - Localized response generated for India
+2025-09-14 11:28:02,317 - __main__ - INFO - Answer length: 93 characters
+2025-09-14 11:29:19,778 - __main__ - INFO - User question: What are the different Properties of
+2025-09-14 11:29:19,778 - __main__ - INFO - Processing localized query: 'What are the different Properties of' for Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:29:19,778 - __main__ - ERROR - Error embedding query 'What are the different Properties of': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 11:29:19,780 - __main__ - ERROR - Error generating localized response: Missing some input keys: {'student_context'}
+2025-09-14 11:29:19,781 - __main__ - INFO - Localized response generated for India
+2025-09-14 11:29:19,781 - __main__ - INFO - Answer length: 93 characters
+2025-09-14 11:29:22,758 - __main__ - INFO - User question: Materials?
+2025-09-14 11:29:22,758 - __main__ - INFO - Processing localized query: 'Materials?' for Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:29:22,758 - __main__ - ERROR - Error embedding query 'Materials?': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 11:29:22,759 - __main__ - ERROR - Error generating localized response: Missing some input keys: {'student_context'}
+2025-09-14 11:29:22,760 - __main__ - INFO - Localized response generated for India
+2025-09-14 11:29:22,760 - __main__ - INFO - Answer length: 93 characters
+2025-09-14 11:29:53,906 - __main__ - INFO - User question: what are the different properties of material?
+2025-09-14 11:29:53,906 - __main__ - INFO - Processing localized query: 'what are the different properties of material?' for Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:29:53,906 - __main__ - ERROR - Error embedding query 'what are the different properties of material?': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 11:29:53,907 - __main__ - ERROR - Error generating localized response: Missing some input keys: {'student_context'}
+2025-09-14 11:29:53,908 - __main__ - INFO - Localized response generated for India
+2025-09-14 11:29:53,908 - __main__ - INFO - Answer length: 93 characters
+2025-09-14 11:30:19,448 - __main__ - INFO - User ended session
+2025-09-14 11:30:28,400 - __main__ - INFO - Initializing Localized RAG Chatbot
+2025-09-14 11:30:29,402 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 11:30:29,402 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 11:30:29,404 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 11:30:29,511 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 11:30:29,522 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 11:30:29,536 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 11:30:29,536 - __main__ - INFO - Localized retrieval chain setup completed
+2025-09-14 11:30:55,055 - __main__ - INFO - Student profile set: Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:31:23,600 - __main__ - INFO - User question: what is temperature?
+2025-09-14 11:31:23,600 - __main__ - INFO - Processing localized query: 'what is temperature?' for Student: tanya, Age: 11, Grade: 6, Region: India, State: Delhi, Curriculum: CBSE
+2025-09-14 11:31:23,605 - __main__ - ERROR - Error embedding query 'what is temperature?': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 11:31:23,606 - __main__ - ERROR - Error generating localized response: Missing some input keys: {'student_context'}
+2025-09-14 11:31:23,607 - __main__ - INFO - Localized response generated for India
+2025-09-14 11:31:23,607 - __main__ - INFO - Answer length: 93 characters
+2025-09-14 15:06:23,113 - __main__ - INFO - User ended session

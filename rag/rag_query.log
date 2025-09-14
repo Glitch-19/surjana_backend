@@ -297,3 +297,220 @@ Now, for a quick quiz: Can a car be considered a living thing because it moves? 
 2025-09-14 11:02:13,165 - __main__ - INFO - Sources: 5 documents
 2025-09-14 11:02:13,165 - __main__ - INFO - --------------------------------------------------------------------------------
 2025-09-14 11:04:53,779 - __main__ - INFO - User ended session
+2025-09-14 15:16:22,465 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 15:16:22,467 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 15:16:23,470 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 15:16:23,470 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 15:16:23,477 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 15:16:23,585 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 15:16:23,607 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 15:16:23,623 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 15:16:23,623 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 15:16:23,623 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 15:16:23,623 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 15:16:40,033 - __main__ - INFO - User question: photosynthesis?
+2025-09-14 15:16:40,033 - __main__ - INFO - Processing question: 'photosynthesis?'
+2025-09-14 15:16:41,699 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 15:16:44,750 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 15:16:44,750 - __main__ - INFO - Question processed: photosynthesis?
+2025-09-14 15:16:44,750 - __main__ - INFO - Answer: Okay, I'm ready to help you understand Class 6 Science! Let's start with your question about photosynthesis.
+
+**Student Question: photosynthesis?**
+
+Here's a breakdown to help you understand:
+
+1.  **Key Point:** Photosynthesis is how plants make their own food using sunlight.
+
+2.  **Mini-Explanation:** Plants take in sunlight, water, and carbon dioxide (a gas from the air). They use the sunlight to turn water and carbon dioxide into sugar (food!) and oxygen. The oxygen is released into the air for us to breathe.
+
+3.  **Real-Life Connection:** Think of plants as tiny chefs using sunlight as their stove to cook their meals!
+
+4.  **Memory Tip:** Sunlight + Water + Air = Plant Food (Photosynthesis)
+
+**Quick Quiz:**
+
+True or False: Photosynthesis releases carbon dioxide into the air.
+2025-09-14 15:16:44,750 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 15:16:44,750 - __main__ - INFO - Sources: 5 documents
+2025-09-14 15:16:44,750 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 15:20:53,655 - __main__ - INFO - Session interrupted by user
+2025-09-14 15:31:12,089 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 15:31:12,093 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 15:31:15,181 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 15:31:15,181 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 15:31:15,221 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 15:31:15,761 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 15:31:15,865 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 15:31:15,998 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 15:31:15,999 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 15:31:15,999 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 15:31:15,999 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 15:31:32,075 - __main__ - INFO - User question: photosynthesis
+2025-09-14 15:31:32,076 - __main__ - INFO - Processing question: 'photosynthesis'
+2025-09-14 15:31:33,856 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 15:31:37,109 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 15:31:37,109 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 15:31:37,109 - __main__ - INFO - Answer: Okay, let's break down photosynthesis!
+
+1.  **Key Point:** Photosynthesis is how plants make their own food using sunlight.
+
+2.  **Mini-Explanation:** Plants take in sunlight, water, and carbon dioxide (a gas from the air). They use the sunlight's energy to turn water and carbon dioxide into sugar (food) and oxygen (which we breathe!). It's like a plant's personal cooking show, using sunlight as the stove!
+
+3.  **Real-Life Connection:** Think of a plant in your house – it needs sunlight to stay alive and grow, just like you need food!
+
+4.  **Memory Tip:** "Sunlight to Sugar!"
+
+Quick Quiz:
+
+True or False: Plants use photosynthesis to make carbon dioxide.
+2025-09-14 15:31:37,109 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 15:31:37,109 - __main__ - INFO - Sources: 5 documents
+2025-09-14 15:31:37,109 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 15:31:52,286 - __main__ - INFO - User ended session
+2025-09-14 15:32:06,463 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 15:32:06,465 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 15:32:08,859 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 15:32:08,859 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 15:32:08,863 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 15:32:09,016 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 15:32:09,037 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 15:32:09,070 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 15:32:09,070 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 15:32:09,071 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 15:32:09,071 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 15:32:20,862 - __main__ - INFO - User question: photosynthesis
+2025-09-14 15:32:20,862 - __main__ - INFO - Processing question: 'photosynthesis'
+2025-09-14 15:32:22,579 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 15:32:25,544 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 15:32:25,544 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 15:32:25,544 - __main__ - INFO - Answer: Okay, let's learn about photosynthesis!
+
+1. **Key Point:** Photosynthesis is how plants make their own food using sunlight.
+
+2. **Mini-Explanation:** Plants take in sunlight, water, and carbon dioxide (a gas from the air). They use the sunlight's energy to turn water and carbon dioxide into sugar (food!) and oxygen. The oxygen is released into the air for us to breathe.
+
+3. **Real-Life Connection:** Think of plants as tiny chefs using sunlight as their stove to cook up a sugary meal!
+
+4. **Memory Tip:** "Sunlight + Water + Air = Plant Food!"
+
+Now, a quick quiz to check your understanding:
+
+Which of these is NOT needed for photosynthesis?
+a) Sunlight
+b) Water
+c) Oxygen
+d) Carbon Dioxide
+2025-09-14 15:32:25,544 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 15:32:25,544 - __main__ - INFO - Sources: 5 documents
+2025-09-14 15:32:25,544 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 15:32:52,066 - __main__ - INFO - User question: c
+2025-09-14 15:32:52,066 - __main__ - INFO - Processing question: 'c'
+2025-09-14 15:32:53,719 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents "HTTP/1.1 200 OK"
+2025-09-14 15:32:55,044 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 15:32:55,045 - __main__ - INFO - Question processed: c
+2025-09-14 15:32:55,045 - __main__ - INFO - Answer: Okay, I'm ready to help you understand your science lessons! Let's start with the first part of your question:
+
+**Student Question: c**
+
+I need more information from your textbook to give you the complete answer. Please provide the full question or context related to "Student Question: c" so I can break it down for you.
+2025-09-14 15:32:55,045 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 15:32:55,045 - __main__ - INFO - Sources: 5 documents
+2025-09-14 15:32:55,045 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 15:33:11,223 - __main__ - INFO - User ended session
+2025-09-14 16:10:37,166 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 16:10:37,168 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 16:10:39,754 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:10:39,754 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:10:39,759 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:10:39,922 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:10:39,949 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:10:39,981 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:10:39,982 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:10:39,982 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 16:10:39,983 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 16:10:59,035 - __main__ - INFO - User question: photosynthesis
+2025-09-14 16:10:59,035 - __main__ - INFO - Processing question: 'photosynthesis'
+2025-09-14 16:10:59,045 - __main__ - ERROR - Error embedding query: Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:11:02,445 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 16:11:02,445 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 16:11:02,445 - __main__ - INFO - Answer: Okay, let's break down what science is all about, based on what your textbook says!
+
+**Key Point:** Science is a way of finding answers to questions by following a step-by-step process.
+
+**Mini-Explanation:** When you have a question, you first observe something interesting. Then, you make a guess (called a hypothesis) about the answer. Finally, you test your guess with experiments or more observations to see if you were right!
+
+**Real-Life Connection:** Just like figuring out why your pen stopped writing, science helps us understand the world around us.
+
+**Memory Tip:** Question, Guess, Test!
+
+Now, let's see if you got it!
+
+**Quick Quiz:** Imagine your toy car isn't moving. According to the scientific method, what's the FIRST thing you should do?
+a) Ask your friend for help.
+b) Make a guess about why it's not moving.
+c) Observe the car carefully.
+d) Take the car apart.
+2025-09-14 16:11:02,445 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 16:11:02,445 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:11:02,445 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:13:31,695 - __main__ - INFO - User ended session
+2025-09-14 16:13:43,095 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 16:13:45,430 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:13:45,430 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:13:45,434 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:13:45,602 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:13:45,622 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:13:45,652 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:13:45,652 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:49:02,464 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 16:49:02,465 - __main__ - ERROR - Failed to run query engine: RAGQueryEngine() takes no arguments
+2025-09-14 16:50:50,915 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 16:50:50,916 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 16:50:50,916 - __main__ - ERROR - Failed to initialize embeddings: GeminiEmbeddings() takes no arguments
+2025-09-14 16:50:50,917 - __main__ - ERROR - Failed to run query engine: GeminiEmbeddings() takes no arguments
+2025-09-14 16:51:23,660 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 16:51:23,662 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 16:51:23,662 - __main__ - ERROR - Failed to initialize embeddings: module 'google.generativeai' has no attribute 'Client'
+2025-09-14 16:51:23,662 - __main__ - ERROR - Failed to run query engine: module 'google.generativeai' has no attribute 'Client'
+2025-09-14 16:53:01,483 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 16:53:01,485 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 16:53:01,485 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:53:01,485 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:53:01,490 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:53:01,524 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:53:01,580 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:53:01,627 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:53:01,628 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:53:01,628 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 16:53:01,628 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 16:53:24,942 - __main__ - INFO - User question: What is the differences between living and non living
+2025-09-14 16:53:24,943 - __main__ - INFO - Processing question: 'What is the differences between living and non living'
+2025-09-14 16:53:30,186 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 16:53:30,186 - __main__ - INFO - Question processed: What is the differences between living and non living
+2025-09-14 16:53:30,186 - __main__ - INFO - Answer: Living things and non-living things are different in many ways! Here are some key differences:
+
+*   **Movement:** Living things can move on their own. For example, a pigeon can fly and a plant can turn its leaves towards the sun. Cars move, but they need fuel and a driver, so they are non-living.
+*   **Growth:** Living things grow. A seed turns into a plant, and a baby grows into an adult. Non-living things like cars or pencils don't grow.
+*   **Reproduction:** Living things can reproduce, meaning they can create new living things like themselves. For example, a pigeon lays eggs, and a plant produces seeds. Non-living things cannot reproduce. You can't get young ones of a pencil!
+*   **Need for food:** Living things need food to live and grow.
+*   **Respiration:** Living things respire.
+*   **Excretion:** Living things excrete.
+*   **Respond to stimuli:** Living things respond to things around them.
+*   **Death:** Living things eventually die.
+
+If something doesn't have these characteristics, we consider it non-living.
+2025-09-14 16:53:30,186 - __main__ - INFO - Mode: rag_with_llm
+2025-09-14 16:53:30,186 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:53:30,187 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:53:59,664 - __main__ - INFO - Initializing RAG Query Engine...
+2025-09-14 16:53:59,666 - __main__ - INFO - Initializing RAG Query Engine with Gemini embeddings
+2025-09-14 16:53:59,666 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:53:59,666 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:53:59,671 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:53:59,715 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:53:59,756 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:53:59,792 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:53:59,793 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:53:59,793 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 16:53:59,793 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'rag_with_llm'}
+2025-09-14 16:54:01,689 - __main__ - INFO - Session interrupted by user

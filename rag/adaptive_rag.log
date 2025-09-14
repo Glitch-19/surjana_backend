@@ -15,3 +15,971 @@
 2025-09-14 11:07:29,029 - __main__ - INFO - Session 8701 started for question: What Sets the Living Apart from the
 2025-09-14 11:08:17,072 - __main__ - INFO - Quiz completed - Student: C, Correct: C, Result: True
 2025-09-14 11:09:16,883 - __main__ - INFO - User ended session
+2025-09-14 15:55:08,058 - __main__ - INFO - Initializing Adaptive RAG Query Engine...
+2025-09-14 15:55:08,060 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 15:55:10,750 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 15:55:10,750 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 15:55:10,754 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 15:55:10,939 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 15:55:10,966 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 15:55:11,004 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 15:55:11,006 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 15:55:11,006 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 15:55:11,006 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 15:55:22,119 - __main__ - INFO - User input: photosynthesis
+2025-09-14 15:55:22,130 - __main__ - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 15:55:25,973 - __main__ - INFO - Generated quiz question for topic: photosynthesis
+2025-09-14 15:55:25,973 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 15:55:25,973 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 15:55:25,973 - __main__ - INFO - Answer: Okay, let's break down what science is all about, based on your textbook!
+
+**1. Key Point:** Science is a way of finding answers to questions by following a step-by-step process.
+
+**2. Mini-Explanation:** When you have a question, you first make a guess (called a hypothesis). Then, you test your guess by doing experiments or making more observations. Finally, you look at the results to see if your guess was right!
+
+**3. Real-Life Connection:** Just like figuring out why your pen stopped writing, science helps us understand the world around us.
+
+**4. Memory Tip:** Question, Guess, Test!
+
+Now, a quick quiz to check your understanding:
+
+What is one thing we need to stay alive, just like we need food?
+A) Toys
+B) Water
+C) Video Games
+D) Chocolates
+2025-09-14 15:55:25,973 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 15:55:25,973 - __main__ - INFO - Sources: 5 documents
+2025-09-14 15:55:25,974 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 15:57:07,957 - __main__ - INFO - User ended session
+2025-09-14 15:58:36,198 - __main__ - INFO - Initializing Adaptive RAG Query Engine...
+2025-09-14 15:58:36,199 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 15:58:38,971 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 15:58:38,971 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 15:58:38,975 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 15:58:39,163 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 15:58:39,188 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 15:58:39,220 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 15:58:39,221 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 15:58:39,221 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 15:58:39,221 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 15:59:21,724 - __main__ - INFO - User input: photosynthesis
+2025-09-14 15:59:21,734 - __main__ - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 15:59:25,928 - __main__ - INFO - Generated quiz question for topic: photosynthesis
+2025-09-14 15:59:25,929 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 15:59:25,929 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 15:59:25,929 - __main__ - INFO - Answer: Okay, let's break down what science is all about, based on what your textbook says!
+
+**Key Point:** Science is a way of figuring things out by asking questions and testing answers.
+
+**Mini-Explanation:** When something interesting happens, we ask "Why?". Then, we guess an answer and test our guess with experiments or by watching carefully. Finally, we look at the results to see if our guess was right!
+
+**Real-Life Connection:** Just like you figure out why your pen stopped working, scientists figure out bigger mysteries!
+
+**Memory Tip:** Question, Guess, Test!
+
+Now, a quick quiz to check your understanding:
+
+What is the first thing we do when we want to find out the answer to a question, like why your pen stopped writing?
+A) Memorize facts from a book
+B) Ask a friend for the answer
+C) Guess a possible answer
+D) Do an experiment right away
+2025-09-14 15:59:25,929 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 15:59:25,929 - __main__ - INFO - Sources: 5 documents
+2025-09-14 15:59:25,929 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:02:41,227 - __main__ - INFO - User ended session
+2025-09-14 16:02:51,928 - __main__ - INFO - Initializing Adaptive RAG Query Engine...
+2025-09-14 16:02:51,929 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:02:54,442 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:02:54,442 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:02:54,451 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:02:54,627 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:02:54,649 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:02:54,678 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:02:54,679 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:02:54,679 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:02:54,679 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:03:03,109 - __main__ - INFO - User input: photosynthesis
+2025-09-14 16:03:03,120 - __main__ - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:03:07,738 - __main__ - INFO - Generated quiz question for topic: photosynthesis
+2025-09-14 16:03:07,738 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:03:07,739 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 16:03:07,739 - __main__ - INFO - Answer: Okay, let's break down what science is all about, based on what your textbook says!
+
+**Key Point:** Science is a way of finding answers to questions by following steps.
+
+**Mini-Explanation:** When you have a question, you make a guess (called a hypothesis), then you test your guess with experiments or observations. Finally, you look at the results to see if your guess was right!
+
+**Real-Life Connection:** Just like when your pen stops working, and you try to figure out why!
+
+**Memory Tip:** Question, Guess, Test!
+
+Now, let's see if you got it!
+
+**Quiz Question:** Imagine your toy car isn't moving. What's the FIRST thing a scientist (or you!) would do?
+
+a) Get angry and throw it!
+b) Make a guess about why it's not moving.
+c) Take it apart immediately!
+d) Ask a friend for help.
+
+Now, a quick quiz to check your understanding:
+
+Which of these is NOT something we need to do when we use the scientific method?
+A) Guess an answer to our question
+B) Memorize facts and figures
+C) Observe something interesting
+D) Test our guess with experiments
+2025-09-14 16:03:07,739 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:03:07,739 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:03:07,739 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:05:25,676 - __main__ - INFO - User input: what is photosynthesis
+2025-09-14 16:05:25,677 - __main__ - ERROR - Error embedding query 'what is photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:05:30,043 - __main__ - INFO - Generated quiz question for topic: what is photosynthesis
+2025-09-14 16:05:30,043 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:05:30,044 - __main__ - INFO - Question processed: what is photosynthesis
+2025-09-14 16:05:30,044 - __main__ - INFO - Answer: Okay, I'm ready to help you understand science! Let's start with the ideas presented in your textbook.
+
+**Here's a breakdown of the first part of the chapter:**
+
+**Key Point:** Science is about asking questions and finding answers, not just memorizing facts.
+
+**Mini-Explanation:** When you face a problem, like a pen not working, you ask "why?" Then you guess an answer (like the ink is finished) and test your guess. This process of questioning, guessing, and testing is how science works!
+
+**Real-Life Connection:** Think about when your toy stops working. You try to figure out why, right? That's science in action!
+
+**Memory Tip:** Question, Guess, Test = Science!
+
+**Activity 1.1 Explained:**
+
+*   The textbook asks you to think about a problem you solved.
+*   It wants you to write down the steps you took to solve it.
+*   This helps you realize you already use the scientific method!
+
+**Here's a breakdown of the next part of the chapter:**
+
+**Key Point:** The scientific method is a step-by-step way to find answers.
+
+**Mini-Explanation:** First, you **observe** something interesting. This makes you **wonder** and ask a question. Then, you **guess** an answer. Next, you **test** your guess with experiments or observations. Finally, you **analyze** the results to see if your guess was right.
+
+**Real-Life Connection:** Imagine baking a cake. If it doesn't rise, you ask why. Maybe you didn't add enough baking powder. You'd try again with more baking powder to test your guess!
+
+**Memory Tip:** Observe, Wonder, Guess, Test, Analyze!
+
+**Let's check your understanding!**
+
+Which of these is the FIRST step in the scientific method, according to your textbook?
+
+a) Guessing an answer
+b) Observing something interesting
+c) Testing your guess
+
+Now, a quick quiz to check your understanding:
+
+What helps us find answers to our questions in a step-by-step way?
+A) Memorizing facts
+B) Doing experiments
+C) The scientific method
+D) Reading books
+2025-09-14 16:05:30,044 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:05:30,044 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:05:30,044 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:06:43,489 - __main__ - INFO - User ended session
+2025-09-14 16:19:23,660 - __main__ - INFO - Initializing Adaptive RAG Query Engine...
+2025-09-14 16:19:23,667 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:19:26,050 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:19:26,051 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:19:26,055 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:19:26,210 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:19:26,232 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:19:26,263 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:19:26,264 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:19:26,264 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:19:26,264 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:19:36,516 - __main__ - INFO - User input: photosynthesis
+2025-09-14 16:19:36,529 - __main__ - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:19:39,778 - __main__ - INFO - Generated quiz question for topic: photosynthesis
+2025-09-14 16:19:39,778 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:19:39,778 - __main__ - INFO - Question processed: photosynthesis
+2025-09-14 16:19:39,778 - __main__ - INFO - Answer: Okay, let's break down what this chapter is about!
+
+**Key Point:** Science is a way of asking questions and finding answers, just like you do every day!
+
+**Mini-Explanation:** The chapter talks about how everything around us is made of different materials and how we can figure things out by asking questions, guessing answers, and testing those guesses. It also introduces the "scientific method," which is a step-by-step way to solve problems.
+
+**Real-Life Connection:** Think about when your toy stops working – you try to figure out why, right? That's science!
+
+**Memory Tip:** Question, Guess, Test = Science!
+
+Now, a quick quiz to check your understanding:
+
+What is the first thing we do when we want to find out the answer to a question, like why your pen stopped writing?
+A) Memorize facts and figures
+B) Guess a possible answer
+C) Do an experiment
+D) Ask a friend
+2025-09-14 16:19:39,778 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:19:39,778 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:19:39,778 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:20:36,696 - __main__ - INFO - Session interrupted by user
+2025-09-14 16:21:22,771 - query - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:21:25,266 - query - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:21:25,266 - query - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:21:25,271 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:21:25,434 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:21:25,456 - query - INFO - Vector store loaded from: vector_store_gemini
+2025-09-14 16:21:25,485 - query - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:21:25,486 - query - INFO - RetrievalQA chain setup completed
+2025-09-14 16:21:25,487 - query - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:21:25,500 - query - ERROR - Error embedding query 'plants make food': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:21:25,503 - query - ERROR - Error embedding query 'leaves': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:21:25,505 - query - ERROR - Error embedding query 'sunlight energy': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:21:25,506 - query - ERROR - Error embedding query 'green plants': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:21:25,509 - query - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:23:35,325 - query - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:23:37,802 - query - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:23:37,802 - query - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:23:37,807 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:23:37,975 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:23:37,997 - query - INFO - Vector store loaded from: vector_store_gemini
+2025-09-14 16:23:38,029 - query - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:23:38,030 - query - INFO - RetrievalQA chain setup completed
+2025-09-14 16:23:38,039 - query - ERROR - Error embedding query 'photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:23:42,170 - query - INFO - Generated quiz question for topic: photosynthesis
+2025-09-14 16:23:42,170 - query - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:25:24,940 - __main__ - INFO - Initializing Adaptive RAG Query Engine...
+2025-09-14 16:25:24,941 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:25:27,382 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:25:27,382 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:25:27,386 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:25:27,541 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:25:27,581 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:25:27,618 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:25:27,619 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:25:27,619 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:25:27,619 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:25:51,602 - __main__ - INFO - User input: living being and non living being
+2025-09-14 16:25:51,613 - __main__ - ERROR - Error embedding query 'living being and non living being': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:25:55,183 - __main__ - INFO - Generated quiz question for topic: living being and non living being
+2025-09-14 16:25:55,184 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:25:55,184 - __main__ - INFO - Question processed: living being and non living being
+2025-09-14 16:25:55,184 - __main__ - INFO - Answer: I'm sorry, but your Class 6 NCERT Science textbook doesn't seem to cover living being and non living being in detail. The textbook focuses on materials around us, properties of water, and the scientific method. You might find information about living being and non living being in higher grade textbooks or other science resources.
+
+Now, a quick quiz to check your understanding:
+
+Which of the following is NOT mentioned as something we find around us in the text?
+A) Metal key
+B) Plastic ruler
+C) Wooden chair
+D) Rubber eraser
+2025-09-14 16:25:55,184 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:25:55,184 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:25:55,184 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:28:48,245 - __main__ - INFO - User input: Your question: photosynthesis
+2025-09-14 16:28:48,246 - __main__ - ERROR - Error embedding query 'Your question: photosynthesis': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:28:50,525 - __main__ - INFO - Generated quiz question for topic: Your question: photosynthesis
+2025-09-14 16:28:50,525 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:28:50,525 - __main__ - INFO - Question processed: Your question: photosynthesis
+2025-09-14 16:28:50,525 - __main__ - INFO - Answer: I'm sorry, but your Class 6 NCERT Science textbook doesn't seem to cover Your question: photosynthesis in detail. The textbook focuses on [the nature of science, the scientific method, and asking questions to understand the world around us]. You might find information about Your question: photosynthesis in higher grade textbooks or other science resources.
+
+Now, a quick quiz to check your understanding:
+
+Which of these is NOT mentioned as something we use in our daily lives?
+A) Metal key
+B) Plastic ruler
+C) Wooden spoon
+D) Rubber eraser
+2025-09-14 16:28:50,527 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:28:50,527 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:28:50,527 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:28:56,949 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:28:56,953 - __main__ - INFO - Answer: Okay, I'm ready to help Class 6 students understand their science lessons! Let's break down this excerpt from the NCERT textbook.
+
+**Here's a breakdown of the text, focusing on making it easy to understand:**
+
+**Part 1: Introduction - The World Around Us**
+
+*   **Key Point:** Everything around us is made of different stuff, and we can ask questions about it!
+*   **Mini-Explanation:** The book encourages you to be curious about everything you see - from the paper you write on to the water you drink. It asks what these things are made of and how we can separate them.
+*   **Real-Life Connection:** Think about all the different things in your room. Are they all the same?
+*   **Memory Tip:** "Be Curious!"
+
+**Part 2: Water and Temperature**
+
+*   **Key Point:** Water is special, and we can explore how it changes when we heat it or cool it.
+*   **Mini-Explanation:** The text talks about how water can turn into ice when it's cold and steam when it's hot. It also introduces the idea of understanding how hot or cold something is.
+*   **Real-Life Connection:** Think about drinking cold juice in summer or hot chocolate in winter.
+*   **Memory Tip:** "Hot and Cold Water!"
+
+**Part 3: Asking Questions and Science**
+
+*   **Key Point:** Science is all about asking questions and finding answers!
+*   **Mini-Explanation:** The book encourages you to ask questions about everything, even things beyond Earth like the Sun and stars. It also introduces the idea that even figuring out why your pen stopped working is a form of science.
+*   **Real-Life Connection:** Remember when you tried to fix a toy? That's like being a scientist!
+*   **Memory Tip:** "Question Everything!"
+
+**Part 4: The Scientific Method**
+
+*   **Key Point:** Science uses a step-by-step process to find answers, called the scientific method.
+*   **Mini-Explanation:**
+    1.  **Observe:** Notice something interesting.
+    2.  **Question:** Ask "Why?" about it.
+    3.  **Guess (Hypothesis):** Make a possible answer.
+    4.  **Test:** Do an experiment or observe more.
+    5.  **Analyze:** See if your guess was right.
+*   **Real-Life Connection:** Like figuring out why a bicycle tire is flat.
+*   **Memory Tip:** "O-Q-G-T-A: Observe, Question, Guess, Test, Analyze!"
+
+**Part 5: Everyone Can Be a Scientist**
+
+*   **Key Point:** Anyone who asks questions and tries to find answers is like a scientist!
+*   **Mini-Explanation:** Whether it's a cook wondering why food spilled or a repair person fixing a flat tire, they're all using the scientific method.
+*   **Real-Life Connection:** Think about how you solve problems every day.
+*   **Memory Tip:** "You are a Scientist!"
+
+Now, a quick quiz to check your understanding:
+
+When your pen stops writing, what is the first thing you should do to find out why?
+A) Ask a friend for a new pen.
+B) Guess why it stopped writing.
+C) Throw the pen away.
+D) Start writing with a pencil.
+2025-09-14 16:28:56,953 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:28:56,953 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:28:56,953 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:28:59,618 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:28:59,622 - __main__ - INFO - Answer: Okay, I'm ready to help Class 6 students conquer their science studies! Let's break down these concepts and make learning fun. Just give me a question related to the provided text.
+
+Now, a quick quiz to check your understanding:
+
+Which of these is an example of using the scientific method?
+A) Memorizing all the names of the planets.
+B) Following a recipe to bake a cake.
+C) Guessing why your toy car won't move and then checking the batteries.
+D) Watching a science show on television.
+2025-09-14 16:28:59,623 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:28:59,623 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:28:59,623 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:28:59,628 - __main__ - INFO - User input: --------------------------------------------------
+2025-09-14 16:28:59,630 - __main__ - ERROR - Error embedding query '--------------------------------------------------': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:05,341 - __main__ - INFO - Generated quiz question for topic: --------------------------------------------------
+2025-09-14 16:29:05,341 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:05,341 - __main__ - INFO - Question processed: --------------------------------------------------
+2025-09-14 16:29:05,346 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:05,346 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:05,346 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:05,350 - __main__ - INFO - User input: Okay, let's break down what this chapter is about!
+2025-09-14 16:29:05,350 - __main__ - ERROR - Error embedding query 'Okay, let's break down what this chapter is about!': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:08,756 - __main__ - INFO - Generated quiz question for topic: Okay, let's break down what this chapter is about!
+2025-09-14 16:29:08,756 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:08,756 - __main__ - INFO - Question processed: Okay, let's break down what this chapter is about!
+2025-09-14 16:29:08,756 - __main__ - INFO - Answer: Okay, let's break down what this chapter is about!
+
+1. **Key Point:** This chapter is all about how we explore the world around us using questions and experiments, just like scientists!
+
+2. **Mini-Explanation:**
+    *   It starts by making you curious about everyday things like paper, keys, and water.
+    *   Then, it shows you that finding answers to simple problems, like why your pen stopped working, is actually using a scientific method.
+    *   Finally, it explains the steps of the scientific method: observe, question, guess, test, and analyze.
+
+3. **Real-Life Connection:** Think about when you try to figure out why your favorite toy isn't working – that's science in action!
+
+4. **Memory Tip:** "Question, Guess, Test!"
+
+Now, a quick quiz to check your understanding:
+
+When you try to find out why your toy car isn't moving, what are you doing?
+A) Memorizing facts about cars
+B) Following the scientific method
+C) Just guessing without thinking
+D) Only doing an experiment
+2025-09-14 16:29:08,756 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:08,757 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:08,757 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:08,760 - __main__ - INFO - User input: **Key Point:** Science is a way of asking questions and finding answers, just like you do every day!
+2025-09-14 16:29:08,760 - __main__ - ERROR - Error embedding query '**Key Point:** Science is a way of asking questions and finding answers, just like you do every day!': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:11,795 - __main__ - INFO - Generated quiz question for topic: **Key Point:** Science is a way of asking questions and finding answers, just like you do every day!
+2025-09-14 16:29:11,795 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:11,795 - __main__ - INFO - Question processed: **Key Point:** Science is a way of asking questions and finding answers, just like you do every day!
+2025-09-14 16:29:11,796 - __main__ - INFO - Answer: Okay, I'm ready to help Class 6 students understand their science lessons! Let's break down this chapter introduction.
+
+**Student Question:** What is science and how do scientists work?
+
+**Key Point:** Science is a way of asking questions and finding answers, just like you do every day!
+
+**Mini-Explanation:**
+*   Science starts with noticing something interesting or confusing.
+*   Then, you ask a question about it and guess an answer (that's called a hypothesis!).
+*   Finally, you test your guess with experiments or observations to see if you're right.
+
+**Real-Life Connection:** Remember when your pen stopped working? You asked "Why?" and tried to figure it out – that's science!
+
+**Memory Tip:** Question, Guess, Test!
+
+Now, a quick quiz to check your understanding:
+
+What is one important thing that science helps us do?
+A) Memorize long lists of facts
+B) Ask questions and find answers
+C) Only do experiments in a lab
+D) Never make guesses about things
+2025-09-14 16:29:11,796 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:11,796 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:11,796 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:11,805 - __main__ - INFO - User input: **Mini-Explanation:** The chapter talks about how everything around us is made of different materials and how we can figure things out by asking questions, guessing answers, and testing those guesses. It also introduces the "scientific method," which is a step-by-step way to solve problems.
+2025-09-14 16:29:11,806 - __main__ - ERROR - Error embedding query '**Mini-Explanation:** The chapter talks about how everything around us is made of different materials and how we can figure things out by asking questions, guessing answers, and testing those guesses. It also introduces the "scientific method," which is a step-by-step way to solve problems.': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:15,181 - __main__ - INFO - Generated quiz question for topic: **Mini-Explanation:** The chapter talks about how everything around us is made of different materials and how we can figure things out by asking questions, guessing answers, and testing those guesses. It also introduces the "scientific method," which is a step-by-step way to solve problems.
+2025-09-14 16:29:15,181 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:15,181 - __main__ - INFO - Question processed: **Mini-Explanation:** The chapter talks about how everything around us is made of different materials and how we can figure things out by asking questions, guessing answers, and testing those guesses. It also introduces the "scientific method," which is a step-by-step way to solve problems.
+2025-09-14 16:29:15,181 - __main__ - INFO - Answer: Okay, I'm ready to help Class 6 students understand their science lessons! Let's begin.
+
+**Student Question:** What is this chapter about?
+
+1. **Key Point:** This chapter is all about exploring the world around you like a scientist!
+2. **Mini-Explanation:** The chapter talks about how everything around us is made of different materials and how we can figure things out by asking questions, guessing answers, and testing those guesses. It also introduces the "scientific method," which is a step-by-step way to solve problems.
+3. **Real-Life Connection:** It's like figuring out why your toy car isn't moving – you ask questions, guess what's wrong, and then check to see if your guess is right!
+4. **Memory Tip:** Question, Guess, Test!
+
+Now, a quick quiz to check your understanding:
+
+When your pen stops working, and you guess it's out of ink, what is the next step in the scientific method?
+A) Throw the pen away and get a new one.
+B) Ask a friend if they have a pen.
+C) Open the pen and check if the ink is finished.
+D) Assume you'll never know why it stopped working.
+2025-09-14 16:29:15,181 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:15,181 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:15,181 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:15,186 - __main__ - INFO - User input: **Real-Life Connection:** Think about when your toy stops working – you try to figure out why, right? That's science!
+2025-09-14 16:29:15,187 - __main__ - ERROR - Error embedding query '**Real-Life Connection:** Think about when your toy stops working – you try to figure out why, right? That's science!': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:18,146 - __main__ - INFO - Generated quiz question for topic: **Real-Life Connection:** Think about when your toy stops working – you try to figure out why, right? That's science!
+2025-09-14 16:29:18,146 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:18,147 - __main__ - INFO - Question processed: **Real-Life Connection:** Think about when your toy stops working – you try to figure out why, right? That's science!
+2025-09-14 16:29:18,147 - __main__ - INFO - Answer: Okay, let's break down how you're already using science every day!
+
+1. **Key Point:** Science is how we figure out why things happen, just like figuring out why your toy stopped working.
+
+2. **Mini-Explanation:** When your toy breaks, you *observe* it, *ask* "why?", *guess* what's wrong (maybe the batteries are dead?), and then *test* your guess (put in new batteries!). That's exactly what scientists do!
+
+3. **Real-Life Connection:** When your toy stops working – you try to figure out why, right? That's science!
+
+4. **Memory Tip:** "Broken Toy = Science Detective!"
+
+Now, a quick quiz to check your understanding:
+
+When your toy stops working and you try to figure out why, what are you doing?
+A) Playing a game
+B) Ignoring the problem
+C) Using science to find an answer
+D) Asking someone else to fix it
+2025-09-14 16:29:18,147 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:18,147 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:18,147 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:18,150 - __main__ - INFO - User input: **Memory Tip:** Question, Guess, Test = Science!
+2025-09-14 16:29:18,151 - __main__ - ERROR - Error embedding query '**Memory Tip:** Question, Guess, Test = Science!': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:18,491 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+].
+2025-09-14 16:29:21,959 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 38
+}
+].
+2025-09-14 16:29:24,285 - __main__ - ERROR - Error generating quiz question: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 36
+}
+]
+2025-09-14 16:29:24,285 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:24,285 - __main__ - INFO - Question processed: **Memory Tip:** Question, Guess, Test = Science!
+2025-09-14 16:29:24,285 - __main__ - INFO - Answer: I'm sorry, but your Class 6 NCERT Science textbook doesn't seem to cover **Memory Tip:** Question, Guess, Test = Science! in detail. The textbook focuses on introducing the scientific method through observation, questioning, guessing, and testing. You might find information about **Memory Tip:** Question, Guess, Test = Science! in higher grade textbooks or other science resources.
+
+Now, a quick quiz to check your understanding:
+
+Error generating quiz for **Memory Tip:** Question, Guess, Test = Science!
+Error occurred
+Please try again
+Check connection
+Contact support
+2025-09-14 16:29:24,285 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:24,285 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:24,285 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:24,288 - __main__ - INFO - User input: Now, a quick quiz to check your understanding:
+2025-09-14 16:29:24,288 - __main__ - ERROR - Error embedding query 'Now, a quick quiz to check your understanding:': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:25,517 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 35
+}
+].
+2025-09-14 16:29:27,866 - __main__ - ERROR - Error answering question: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 32
+}
+]
+2025-09-14 16:29:27,868 - __main__ - ERROR - Error processing question 'Now, a quick quiz to check your understanding:': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 32
+}
+]
+2025-09-14 16:29:27,870 - __main__ - INFO - User input: What is the first thing we do when we want to find out the answer to a question, like why your pen stopped writing?
+2025-09-14 16:29:27,871 - __main__ - ERROR - Error embedding query 'What is the first thing we do when we want to find out the answer to a question, like why your pen stopped writing?': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:28,982 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+].
+2025-09-14 16:29:31,312 - __main__ - ERROR - Error answering question: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+2025-09-14 16:29:31,314 - __main__ - ERROR - Error processing question 'What is the first thing we do when we want to find out the answer to a question, like why your pen stopped writing?': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+2025-09-14 16:29:31,315 - __main__ - INFO - User input: A) Memorize facts and figures
+2025-09-14 16:29:31,316 - __main__ - ERROR - Error embedding query 'A) Memorize facts and figures': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:32,480 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+].
+2025-09-14 16:29:34,839 - __main__ - ERROR - Error answering question: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 25
+}
+]
+2025-09-14 16:29:34,842 - __main__ - ERROR - Error processing question 'A) Memorize facts and figures': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 25
+}
+]
+2025-09-14 16:29:34,843 - __main__ - INFO - User input: B) Guess a possible answer
+2025-09-14 16:29:34,844 - __main__ - ERROR - Error embedding query 'B) Guess a possible answer': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:35,946 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 15
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+].
+2025-09-14 16:29:40,985 - __main__ - INFO - Generated quiz question for topic: B) Guess a possible answer
+2025-09-14 16:29:40,985 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:40,985 - __main__ - INFO - Question processed: B) Guess a possible answer
+2025-09-14 16:29:40,985 - __main__ - INFO - Answer: Okay, I'm ready to help Class 6 students understand science better! Let's break down this question.
+
+**Key Point:** Guessing a possible answer is like making a smart prediction.
+
+**Mini-Explanation:** When you see something interesting or have a question, the next step is to guess what the answer might be. This guess is called a hypothesis. It's like making a detective's hunch before you have all the clues.
+
+**Real-Life Connection:** When your toy car stops moving, you might guess the batteries are dead.
+
+**Memory Tip:** Smart Prediction!
+
+Now, a quick quiz to check your understanding:
+
+When your pen stops writing, what is the first thing you might do to find out why?
+A) Throw the pen away and get a new one.
+B) Guess that the ink has finished.
+C) Ask a friend for help.
+D) Start writing with a pencil instead.
+2025-09-14 16:29:40,985 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:40,985 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:40,985 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:40,989 - __main__ - INFO - User input: C) Do an experiment
+2025-09-14 16:29:40,990 - __main__ - ERROR - Error embedding query 'C) Do an experiment': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:43,543 - __main__ - INFO - Generated quiz question for topic: C) Do an experiment
+2025-09-14 16:29:43,543 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:43,543 - __main__ - INFO - Question processed: C) Do an experiment
+2025-09-14 16:29:43,543 - __main__ - INFO - Answer: I'm sorry, but your Class 6 NCERT Science textbook doesn't seem to cover C) Do an experiment in detail. The textbook focuses on the nature of science, the scientific method, and observation. You might find information about C) Do an experiment in higher grade textbooks or other science resources.
+
+Now, a quick quiz to check your understanding:
+
+Which of these is the first step a scientist usually takes when trying to solve a problem?
+A) Guessing the answer
+B) Doing an experiment
+C) Asking a question about something they observe
+D) Memorizing facts about the problem
+2025-09-14 16:29:43,544 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:43,544 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:43,544 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:43,546 - __main__ - INFO - User input: D) Ask a friend
+2025-09-14 16:29:43,547 - __main__ - ERROR - Error embedding query 'D) Ask a friend': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:49,685 - __main__ - INFO - Generated quiz question for topic: D) Ask a friend
+2025-09-14 16:29:49,685 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:49,685 - __main__ - INFO - Question processed: D) Ask a friend
+2025-09-14 16:29:49,686 - __main__ - INFO - Answer: Okay, I'm ready to break down this science text! Let's make it super easy to understand.
+
+**Here's the first chunk, focusing on the beginning of the text:**
+
+**Key Point:** Everything around us is made of different stuff, and science helps us figure out what that stuff is and how it works.
+
+**Mini-Explanation:** We see so many things every day – paper, metal, plastic, water. Science encourages us to ask: What are these things made of? How can we separate them? Even wondering about rain or why water turns to ice is part of science!
+
+**Real-Life Connection:** Think about your toys – some are plastic, some are metal. Science helps us understand why they're different.
+
+**Memory Tip:** "Stuff and Science"
+
+**Here's the second chunk, focusing on the scientific method:**
+
+**Key Point:** Science isn't just memorizing facts; it's a way of figuring things out step-by-step.
+
+**Mini-Explanation:** When your pen stops working, you don't just give up! You guess why (like the ink is gone) and then test your guess. That's how scientists solve problems – by observing, questioning, guessing, and testing.
+
+**Real-Life Connection:** Imagine you're baking a cake and it doesn't rise. You'd try to figure out what went wrong, right? That's science in action!
+
+**Memory Tip:** "Guess and Test"
+
+**Here's the third chunk, focusing on the steps of the scientific method:**
+
+**Key Point:** The scientific method has clear steps: observe, question, guess, test, and analyze.
+
+**Mini-Explanation:** First, you notice something interesting. Then, you ask a question about it. Next, you make a guess (called a hypothesis). After that, you test your guess with experiments or observations. Finally, you look at the results to see if your guess was right.
+
+**Real-Life Connection:** Think about a broken toy. You observe it, ask "Why is it broken?", guess it's a battery problem, test by changing the batteries, and then see if it works!
+
+**Memory Tip:** "O-Q-G-T-A" (Observe, Question, Guess, Test, Analyze)
+
+**Here's the fourth chunk, focusing on who can be a scientist:**
+
+**Key Point:** Anyone who asks questions and tries to find answers is thinking like a scientist!
+
+**Mini-Explanation:** Scientists use the scientific method to solve problems. But even a cook wondering why dal spilled or a repair person fixing a flat tire is using the same kind of thinking. Asking "why?" and trying to figure it out makes you a scientist in your own way.
+
+**Real-Life Connection:** When you try to figure out why your bike is making a funny noise, you're being a scientist!
+
+**Memory Tip:** "Everyone's a Scientist!"
+
+Now, a quick quiz to check your understanding:
+
+When your pen stops writing, what is the first thing you should do?
+A) Throw the pen away and get a new one.
+B) Ask someone else to fix the pen.
+C) Guess why it stopped writing and check your guess.
+D) Start writing with a pencil instead.
+2025-09-14 16:29:49,686 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:49,686 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:49,686 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:49,690 - __main__ - INFO - User input: --------------------------------------------------
+2025-09-14 16:29:49,690 - __main__ - ERROR - Error embedding query '--------------------------------------------------': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:29:52,857 - __main__ - INFO - Generated quiz question for topic: --------------------------------------------------
+2025-09-14 16:29:52,858 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:52,858 - __main__ - INFO - Question processed: --------------------------------------------------
+2025-09-14 16:29:52,858 - __main__ - INFO - Answer: Okay, I'm ready to help Class 6 students understand their science lessons! I'll break down the text into easy-to-understand pieces.
+
+**Here's how I'll approach each question:**
+
+*   I'll focus on making the information simple and fun.
+*   I'll use examples that students can relate to.
+*   I'll keep the explanations short and sweet.
+
+Let's get started! Just give me a student's question or a topic from the text you want me to explain.
+
+Now, a quick quiz to check your understanding:
+
+Which of these is an example of using the scientific method?
+A) Memorizing all the names of the planets.
+B) Guessing why your toy car isn't moving and then checking the batteries.
+C) Reading a story about a famous scientist.
+D) Watching a science show on television.
+2025-09-14 16:29:52,858 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:52,858 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:52,858 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:29:56,269 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:29:56,274 - __main__ - INFO - Answer: Okay, let's break down what the beginning of your Class 6 Science textbook is all about!
+
+**Key Point:** Science is about asking questions and finding answers, just like you do every day!
+
+**Mini-Explanation:** The book wants you to be curious about everything around you – from the paper you write on to the stars in the sky. It shows you that even when you're trying to fix a problem, like a pen that won't write, you're using a method to find the answer. This method involves observing, questioning, guessing, testing, and analyzing!
+
+**Real-Life Connection:** Think about when your toy stops working. You probably try different things to figure out why, right? That's science in action!
+
+**Memory Tip:** Question, Guess, Test!
+
+Now, a quick quiz to check your understanding:
+
+When you try to find out why your toy car isn't moving, what is this similar to?
+A) Memorizing a poem
+B) Following the scientific method
+C) Eating your lunch quickly
+D) Playing a game with friends
+2025-09-14 16:29:56,275 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:29:56,275 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:29:56,275 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:30:39,687 - __main__ - INFO - User ended session
+2025-09-14 16:30:56,728 - __main__ - INFO - Initializing Adaptive RAG Query Engine...
+2025-09-14 16:30:56,730 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:30:59,056 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:30:59,057 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:30:59,061 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:30:59,215 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:30:59,236 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:30:59,265 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:30:59,266 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:30:59,266 - __main__ - INFO - Generated statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:30:59,266 - __main__ - INFO - Query engine statistics: {'vector_store_size': 526, 'embedding_model': 'gemini-embedding-001', 'llm_available': True, 'llm_model': 'models/gemini-2.0-flash', 'mode': 'adaptive_rag_with_llm'}
+2025-09-14 16:31:27,532 - __main__ - INFO - User input: What are the Components of Food?
+2025-09-14 16:31:27,542 - __main__ - ERROR - Error embedding query 'What are the Components of Food?': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:31:31,605 - __main__ - INFO - Generated quiz question for topic: What are the Components of Food?
+2025-09-14 16:31:31,606 - __main__ - INFO - Question processed using RAG with LLM and quiz
+2025-09-14 16:31:31,606 - __main__ - INFO - Question processed: What are the Components of Food?
+2025-09-14 16:31:31,606 - __main__ - INFO - Answer: Okay, let's break down what science is all about from your textbook!
+
+**Key Point:** Science is a way of figuring things out by asking questions and testing answers.
+
+**Mini-Explanation:** When something interesting happens, we ask "Why?". Then, we make a guess (called a hypothesis) about the answer. Finally, we test our guess with experiments or by watching closely to see if our guess was right.
+
+**Real-Life Connection:** Just like you figured out why your pen stopped working, scientists solve problems using these steps.
+
+**Memory Tip:** Question, Guess, Test!
+
+Now, a quick quiz to check your understanding:
+
+What do we need along with food to survive?
+A) Toys
+B) Water
+C) Books
+D) Clothes
+2025-09-14 16:31:31,606 - __main__ - INFO - Mode: rag_with_quiz_and_llm
+2025-09-14 16:31:31,606 - __main__ - INFO - Sources: 5 documents
+2025-09-14 16:31:31,606 - __main__ - INFO - --------------------------------------------------------------------------------
+2025-09-14 16:32:01,684 - __main__ - INFO - User ended session
+2025-09-14 16:32:22,389 - __main__ - INFO - Initializing Adaptive RAG Engine with Gemini embeddings
+2025-09-14 16:32:24,816 - __main__ - INFO - Gemini embeddings initialized with model: gemini-embedding-001
+2025-09-14 16:32:24,817 - __main__ - INFO - Gemini Embeddings initialized successfully
+2025-09-14 16:32:24,821 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-14 16:32:24,979 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-14 16:32:25,001 - __main__ - INFO - Vector store loaded from: C:\Users\91885\OneDrive\Desktop\surjana\rag\vector_store_gemini
+2025-09-14 16:32:25,036 - __main__ - INFO - Google Gemini LLM initialized successfully
+2025-09-14 16:32:25,037 - __main__ - INFO - RetrievalQA chain setup completed
+2025-09-14 16:32:25,038 - __main__ - INFO - Adaptive RAG system initialized successfully
+2025-09-14 16:32:36,026 - __main__ - INFO - User question: What are the Components of Food?
+2025-09-14 16:32:36,026 - __main__ - INFO - Starting adaptive learning session for: 'What are the Components of Food?'
+2025-09-14 16:32:36,027 - __main__ - INFO - Processing question: 'What are the Components of Food?'
+2025-09-14 16:32:36,036 - __main__ - ERROR - Error embedding query 'What are the Components of Food?': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:32:39,162 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 16:32:40,288 - __main__ - INFO - Session 34470 started for question: What are the Components of Food?
+2025-09-14 16:33:27,700 - __main__ - INFO - Quiz completed - Student: B, Correct: B, Result: True
+2025-09-14 16:33:43,660 - __main__ - INFO - User question: balanced diets
+2025-09-14 16:33:43,660 - __main__ - INFO - Starting adaptive learning session for: 'balanced diets'
+2025-09-14 16:33:43,660 - __main__ - INFO - Processing question: 'balanced diets'
+2025-09-14 16:33:43,662 - __main__ - ERROR - Error embedding query 'balanced diets': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:33:46,444 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 16:33:47,356 - __main__ - INFO - Session 70696 started for question: balanced diets
+2025-09-14 16:34:16,652 - __main__ - INFO - Quiz completed - Student: A, Correct: A, Result: True
+2025-09-14 16:34:30,948 - __main__ - INFO - User question: balanced meal
+2025-09-14 16:34:30,948 - __main__ - INFO - Starting adaptive learning session for: 'balanced meal'
+2025-09-14 16:34:30,948 - __main__ - INFO - Processing question: 'balanced meal'
+2025-09-14 16:34:30,949 - __main__ - ERROR - Error embedding query 'balanced meal': Models.embed_content() got an unexpected keyword argument 'content'
+2025-09-14 16:34:32,576 - __main__ - INFO - Question answered using RAG with LLM
+2025-09-14 16:34:33,456 - __main__ - INFO - Session 57365 started for question: balanced meal
